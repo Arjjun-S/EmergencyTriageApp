@@ -2,24 +2,10 @@
 
 
 
-[![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com/)
-
-[![Kotlin](https://img.shields.io/badge/Language-Kotlin-blue.svg)](https://kotlinlang.org/)
-
-[![TensorFlow Lite](https://img.shields.io/badge/ML-TensorFlow%20Lite-orange.svg)](https://www.tensorflow.org/lite)[![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com/)[![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com/)
+## Overview
 
 
-
-**A Complete Multimodal AI-Powered Emergency Medical Triage System for Android**[![Kotlin](https://img.shields.io/badge/Language-Kotlin-blue.svg)](https://kotlinlang.org/)[![Kotlin](https://img.shields.io/badge/Language-Kotlin-blue.svg)](https://kotlinlang.org/)
-
-
-
-## Overview[![TensorFlow Lite](https://img.shields.io/badge/ML-TensorFlow%20Lite-orange.svg)](https://www.tensorflow.org/lite)[![TensorFlow Lite](https://img.shields.io/badge/ML-TensorFlow%20Lite-orange.svg)](https://www.tensorflow.org/lite)
-
-
-
-The Emergency AI Triage App is a cutting-edge Android application that combines voice recognition, image analysis, and text processing to provide intelligent medical triage decisions. Using on-device machine learning, the app classifies medical emergencies and provides urgency flags with recommended actions.[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
+The Emergency AI Triage App is a cutting-edge Android application that combines voice recognition, image analysis, and text processing to provide intelligent medical triage decisions. Using on-device machine learning, the app classifies medical emergencies and provides urgency flags with recommended actions.
 
 
 ### Key Features**A Complete Multimodal AI-Powered Emergency Medical Triage System for Android**
@@ -399,302 +385,177 @@ The repository includes only sample data for demonstration purposes. To train hi
 #### Step 1: Python Environment Setup
 
 ```bash| **TensorFlow** | 2.8+ | ML training (optional) || **Python** | 3.8+ | ML training (optional) |
+# Emergency Triage App
 
-# Create virtual environment
+**A Multimodal AI-Powered Emergency Medical Triage System for Android**
 
-python -m venv venv| **Device RAM** | 4GB+ | Smooth app performance || **TensorFlow** | 2.8+ | ML training (optional) |
+## Overview
 
+The Emergency Triage App combines voice input, image analysis, and structured symptom text to assist with preliminary medical triage. All inference runs on-device using TensorFlow Lite for privacy and low-latency operation. The system produces an urgency level (Green / Yellow / Red) and suggested next-step actions.
 
+## Key Features
 
-# Activate environment| **Device RAM** | 4GB+ | Smooth app performance |
+| Feature | Description |
+|---------|-------------|
+| Voice-to-Text | Capture spoken symptoms via Android speech recognition |
+| Image Classification | Skin condition analysis using a CNN model |
+| Multimodal Fusion | Weighted combination of image + text model outputs |
+| Urgency Classification | Three-tier urgency result (Green / Yellow / Red) |
+| Precaution Lookup | Maps predicted condition to precaution suggestions |
+| Telehealth Hook | Placeholder for integration with remote care services |
+| Offline Execution | All ML inference happens fully on-device |
 
-# Windows:
+## Project Structure
 
-venv\Scripts\activate### Installation Steps
+```
+EmergencyTriageApp/
+├── app/
+│   ├── src/main/
+│   │   ├── java/com/example/emergencytriage/
+│   │   │   ├── MainActivity.kt
+│   │   │   ├── ui/screens/
+│   │   │   ├── ml/
+│   │   │   ├── data/models/
+│   │   │   └── utils/
+│   │   ├── assets/               # TFLite models & label files
+│   │   └── res/                  # Layouts, drawables, mipmap icons
+│   └── build.gradle
+├── ml/                           # Python model training & conversion
+│   ├── train_image_model.py
+│   ├── train_text_model.py
+│   ├── convert_image_to_tflite.py
+│   └── convert_text_to_tflite.py
+├── datasets/                     # Sample CSVs + sample images
+│   ├── DiseaseAndSymptoms.csv
+│   ├── DiseasePrecaution.csv
+│   └── SkinDisease/
+├── models/                       # (Optional) exported .h5 or .tflite
+├── docs/                         # Additional documentation
+├── requirements.txt              # Python dependencies
+└── README.md
+```
 
-# Linux/Mac:
+## ML Pipeline Summary
 
-source venv/bin/activate### 🔧 Installation Steps
+### 1. Image Model
+- Architecture: EfficientNetB0 (base) + custom dense head
+- Input: 224x224 RGB
+- Output: Condition class probabilities
+- Goal Accuracy: >85% with full dataset
 
+### 2. Text Model
+- Architecture: LSTM (or optional transformer) over tokenized symptom text
+- Output: Severity / condition category probability distribution
 
+### 3. Fusion
+- Weighted blend (default Image 0.7, Text 0.3)
+- Produces final urgency level + top condition
 
-# Install dependencies#### Step 1: Clone the Repository
+## Quick Start (App)
 
+1. Install / open Android Studio (Arctic Fox or later)
+2. Clone repository:
+    ```bash
+    git clone https://github.com/Arjjun-S/EmergencyTriageApp.git
+    cd EmergencyTriageApp
+    ```
+3. Open the project root in Android Studio
+4. Let Gradle sync finish
+5. (Optional) Add launcher icons (see below)
+6. Run on a device/emulator (API 21+)
+
+## Launcher Icon (Optional)
+
+Place appropriately sized `ic_launcher.png` files in:
+```
+app/src/main/res/
+   mipmap-mdpi/
+   mipmap-hdpi/
+   mipmap-xhdpi/
+   mipmap-xxhdpi/
+   mipmap-xxxhdpi/
+```
+Use Android Asset Studio to generate sizes from a 512x512 base graphic.
+
+## High-Accuracy Model Training
+
+The repository only includes minimal sample data. For production-quality accuracy you must download full datasets.
+
+### Recommended Skin Dataset (HAM10000)
+Source: Harvard Dataverse  
+URL: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T
+
+Download:
+1. `HAM10000_images_part_1.zip`
+2. `HAM10000_images_part_2.zip`
+3. `HAM10000_metadata.csv`
+
+Extract into:
+```
+datasets/SkinDisease/HAM10000_images_part_1/
+datasets/SkinDisease/HAM10000_images_part_2/
+datasets/SkinDisease/HAM10000_metadata.csv
+```
+
+### Alternative Datasets
+- ISIC 2019 Challenge: https://challenge.isic-archive.com/data/
+- DermNet: http://www.dermnet.com/
+- PH2 (melanoma focus): https://www.fc.up.pt/addi/ph2%20database.html
+
+### Python Environment Setup
+```bash
+python -m venv venv
+venv\Scripts\activate   # Windows
+# source venv/bin/activate  # macOS/Linux
 pip install -r requirements.txt
+```
 
-``````bash#### **Step 1: Clone the Repository**
-
-
-
-#### Step 2: Configure Training Datagit clone https://github.com/Arjjun-S/EmergencyTriageApp.git```bash
-
+### Training Commands
 ```bash
-
-# Ensure datasets are in correct structure:cd EmergencyTriageAppgit clone https://github.com/yourusername/EmergencyTriageApp.git
-
-datasets/
-
-├── DiseaseAndSymptoms.csv```cd EmergencyTriageApp
-
-├── DiseasePrecaution.csv
-
-└── SkinDisease/```
-
-    ├── HAM10000_metadata.csv
-
-    ├── HAM10000_images_part_1/  # 5,000+ images#### Step 2: Open in Android Studio
-
-    └── HAM10000_images_part_2/  # 5,000+ images
-
-```1. Launch Android Studio#### **Step 2: Open in Android Studio**
-
-
-
-#### Step 3: Train High-Accuracy Models2. Click "Open an existing Android Studio project"1. Launch Android Studio
-
-```bash
-
-cd ml/3. Navigate to the `EmergencyTriageApp` folder and select it2. Click "Open an existing Android Studio project"
-
-
-
-# Train image classification model with full dataset4. Wait for Gradle sync to complete3. Navigate to the `EmergencyTriageApp` folder and select it
-
+cd ml
 python train_image_model.py
-
-4. Wait for Gradle sync to complete
-
-# Train text classification model
-
-python train_text_model.py#### Step 3: Add App Icon (Optional)
-
-
-
-# Convert trained models to TensorFlow Lite**Create a Professional App Icon:**#### **Step 3: Add App Icon (Optional)**
-
+python train_text_model.py
 python convert_image_to_tflite.py
-
-python convert_text_to_tflite.py**📱 Create a Professional App Icon:**
-
+python convert_text_to_tflite.py
 ```
 
-Your app needs an icon to look professional on users' devices. The folder structure is ready:
-
-### Expected Performance with Full Datasets
-
-- **Skin Disease Classification**: 85-92% accuracyYour app needs an icon to look professional on users' devices. I've created the folder structure for you:
-
-- **Text Symptom Analysis**: 88-95% accuracy
-
-- **Training Time**: 2-4 hours on GPU, 8-12 hours on CPU```
-
-- **Model Size**: 15-25 MB per model (optimized for mobile)
-
-app/src/main/res/```
-
-**Note**: Training with complete datasets significantly improves model accuracy and real-world performance compared to sample data.
-
-├── mipmap-mdpi/     → ic_launcher.png (48×48 px)app/src/main/res/
-
-## How to Use the App
-
-├── mipmap-hdpi/     → ic_launcher.png (72×72 px)  ├── mipmap-mdpi/     → ic_launcher.png (48×48 px)
-
-### 1. Launch the App
-
-- Open the Emergency Triage App on your Android device├── mipmap-xhdpi/    → ic_launcher.png (96×96 px)├── mipmap-hdpi/     → ic_launcher.png (72×72 px)  
-
-- Grant microphone and camera permissions when prompted
-
-├── mipmap-xxhdpi/   → ic_launcher.png (144×144 px)├── mipmap-xhdpi/    → ic_launcher.png (96×96 px)
-
-### 2. Record Symptoms (Voice Input)
-
-- Tap the **Record** button└── mipmap-xxxhdpi/  → ic_launcher.png (192×192 px)├── mipmap-xxhdpi/   → ic_launcher.png (144×144 px)
-
-- Speak clearly about your symptoms
-
-- Example: *"I have a red rash on my arm with itching and swelling"*```└── mipmap-xxxhdpi/  → ic_launcher.png (192×192 px)
-
-- Tap **Stop** when finished
-
-```
-
-### 3. Capture/Upload Image (Optional)
-
-- Tap **Capture** to take a photo with camera**Quick Icon Creation:**
-
-- Or tap **Gallery** to select an existing image
-
-- Ensure the image is clear and well-lit1. **Use Android Asset Studio** (Recommended): https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html**🎨 Quick Icon Creation:**
-
-
-
-### 4. Get AI Analysis2. **Upload a 512×512** base design (medical theme: red cross, stethoscope, etc.)1. **Use Android Asset Studio** (Recommended): https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
-
-- Tap **Analyze** to start processing
-
-- The AI will analyze both text and image (if provided)3. **Download all sizes** and place them in the respective mipmap folders2. **Upload a 512×512** base design (medical theme: red cross, stethoscope, etc.)
-
-- Wait for results (usually 2-5 seconds)
-
-4. **Name each file**: `ic_launcher.png`3. **Download all sizes** and place them in the respective mipmap folders
-
-### 5. Review Results
-
-- **Urgency Level**: Green (Low) / Yellow (Medium) / Red (High)4. **Name each file**: `ic_launcher.png`
-
-- **Confidence Score**: AI's confidence in the diagnosis
-
-- **Recommended Actions**: Specific steps to take**Icon Ideas:** Medical cross + AI circuit, stethoscope + phone, emergency star + mobile device
-
-- **Precautions**: Disease-specific precautionary measures
-
-**💡 Icon Ideas:** Medical cross + AI circuit, stethoscope + phone, emergency star + mobile device
-
-### 6. Take Action
-
-- Follow the recommended actions*See detailed guide: [`docs/APP_ICON_GUIDE.md`](docs/APP_ICON_GUIDE.md)*
-
-- Use **Call Doctor** for telehealth if urgent
-
-- Save results for medical consultation*See detailed guide: [`docs/APP_ICON_GUIDE.md`](docs/APP_ICON_GUIDE.md)*
-
-
-
-## Configuration#### Step 4: Build and Run
-
-
-
-### Android App Configuration1. Connect an Android device (API 21+) or start an emulator#### **Step 4: Build and Run**
-
-- **Minimum SDK**: API 21 (Android 5.0)
-
-- **Target SDK**: API 34 (Android 14)2. Click the "Run" button in Android Studio1. Connect an Android device (API 21+) or start an emulator
-
-- **Permissions**: CAMERA, RECORD_AUDIO, INTERNET
-
-- **Model Size**: ~50MB total (optimized for mobile)3. Select your target device2. Click the "Run" button (▶️) in Android Studio
-
-
-
-### ML Training Configuration4. The app will install and launch automatically3. Select your target device
-
-- **Image Size**: 224×224×3
-
-- **Batch Size**: 324. The app will install and launch automatically
-
-- **Epochs**: 50-100
-
-- **Learning Rate**: 0.001## Dataset Setup for High-Accuracy Model Training
-
-- **Optimization**: Adam optimizer
-
-### 📊 Dataset Setup (Optional - For Training)
-
-## Testing
-
-The repository includes only sample data for demonstration purposes. To train high-accuracy custom models, you need to download complete datasets.
-
-### Unit Tests
-
-```bashIf you want to train your own models:
-
-# Run Android unit tests
-
-./gradlew test### Current Sample Data
-
-
-
-# Run instrumented tests  - **Disease Symptoms**: 40+ diseases with symptom mappings#### **Step 1: Set Up Python Environment**
-
-./gradlew connectedAndroidTest
-
-```- **Precautions**: Disease-specific precautionary measures```bash
-
-
-
-### ML Model Tests- **Skin Images**: 2 sample images from HAM10000 dataset# Create virtual environment
-
-```bash
-
-cd ml/python -m venv venv
-
-python -m pytest tests/
-
-```### Download Complete Datasets for Production Modelssource venv\Scripts\activate  # On Windows
-
-
-
-## Troubleshooting# source venv/bin/activate    # On Linux/Mac
-
-
-
-### Common Issues#### 1. HAM10000 Skin Lesion Dataset (Recommended)
-
-
-
-| Issue | Solution |**For high-accuracy skin disease detection:**# Install dependencies
-
-|-------|----------|
-
-| **App crashes on startup** | Check permissions in Settings > Apps > Emergency Triage |pip install -r requirements.txt
-
-| **Models not loading** | Ensure TensorFlow Lite files are in `app/src/main/assets/` |
-
-| **Poor image classification** | Use well-lit, clear images; retrain with more data |- **Source**: Harvard Dataverse```
-
-| **Voice recognition fails** | Check microphone permissions and speak clearly |
-
-| **Build errors** | Clean project: `Build > Clean Project` in Android Studio |- **URL**: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T
-
-
-
-### Performance Optimization- **Size**: ~10,000 dermatoscopic images#### **Step 2: Download Full Dataset**
-
-- **RAM Usage**: ~200-300MB typical usage
-
-- **Storage**: ~100MB for app + models- **Classes**: 7 skin lesion typesThe repository includes sample data only. For full training:
-
-- **Battery**: Minimal impact with on-device processing
-
-- **Network**: Only required for telehealth features- **Format**: JPEG images with metadata
-
-
-
-## Contributing1. **Get HAM10000 Dataset**:
-
-
-
-We welcome contributions! Areas for contribution:**Download Steps:**   - Visit: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T
-
-- Additional disease categories
-
-- UI/UX improvements  1. Visit the Harvard Dataverse link above   - Download `HAM10000_images_part_1.zip` and `HAM10000_images_part_2.zip`
-
-- ML model enhancements
-
-- Internationalization2. Download `HAM10000_images_part_1.zip` (5.5 GB)
-
-- iOS version
-
-- Accessibility features3. Download `HAM10000_images_part_2.zip` (5.0 GB)2. **Extract Images**:
-
-
-
-## Support4. Download `HAM10000_metadata.csv`   ```bash
-
-
-
-- **Issues**: [GitHub Issues](https://github.com/Arjjun-S/EmergencyTriageApp/issues)5. Extract images to:   # Extract to datasets/SkinDisease/HAM10000_images_part_1/
-
-- **Discussions**: [GitHub Discussions](https://github.com/Arjjun-S/EmergencyTriageApp/discussions)
-
-   ```   # Extract to datasets/SkinDisease/HAM10000_images_part_2/
+### Expected (Full Dataset) Performance
+- Image classification: 85–92% accuracy
+- Text classification: 88–95% accuracy
+- Training time: GPU 2–4h, CPU 8–12h
+
+## Using the App (Workflow)
+1. Launch app and grant Camera / Microphone permissions
+2. (Optional) Capture or select a skin image
+3. Press record to dictate symptoms, then stop
+4. Tap analyze to run multimodal inference
+5. Review urgency, top condition, and precaution suggestions
+
+## Configuration Reference
+- Min SDK: 21
+- Target SDK: 34
+- Permissions: CAMERA, RECORD_AUDIO, INTERNET
+- Image input size: 224x224
+- Default batch size (training): 32
+
+## Troubleshooting
+| Issue | Resolution |
+|-------|-----------|
+| App crash on launch | Verify permissions granted in system settings |
+| Model not found | Confirm TFLite files exist under `app/src/main/assets/models` |
+| Poor image results | Use clear, well-lit, centered images; expand training data |
+| Speech not captured | Check microphone permission and retry in quiet area |
+| Build failure | Clean/Rebuild project; ensure Gradle sync completed |
+
+## Contributing
+Suggestions / PRs welcome (UI polish, model improvements, accessibility, localization).
+
+## Support
+- Issues: https://github.com/Arjjun-S/EmergencyTriageApp/issues
+- Discussions: (enable in GitHub repository settings if needed)
 
 ---
-
-   datasets/SkinDisease/HAM10000_images_part_1/   ```
+Medical Disclaimer: This application provides informational triage assistance only and is not a substitute for professional medical advice, diagnosis, or treatment.
 
 **Medical Disclaimer**: This app is for informational purposes only and should not replace professional medical advice. Always consult healthcare professionals for medical emergencies.
    datasets/SkinDisease/HAM10000_images_part_2/
