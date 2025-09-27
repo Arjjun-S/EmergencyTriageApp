@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.screens.ResultScreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Triage Results"
+            style="@style/TitleText"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Image Result -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            style="@style/ResultCard"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/img_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="Analysis result image" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Prediction Results Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ResultCard"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_disease"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Predicted Disease: Loading..."
+                    style="@style/SubtitleText" />
+
+                <TextView
+                    android:id="@+id/tv_confidence"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Confidence: Loading..."
+                    style="@style/BodyText"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_urgency_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Urgency Level: Loading..."
+                    style="@style/SubtitleText"
+                    android:textAlignment="center"
+                    android:padding="12dp"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Symptoms Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ResultCard"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reported Symptoms"
+                    style="@style/SubtitleText" />
+
+                <TextView
+                    android:id="@+id/tv_symptoms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Loading symptoms..."
+                    style="@style/BodyText" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Precautions Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ResultCard"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Recommended Precautions"
+                    style="@style/SubtitleText" />
+
+                <TextView
+                    android:id="@+id/tv_precautions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Loading precautions..."
+                    style="@style/BodyText" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btn_call_doctor"
+                style="@style/EmergencyButton"
+                android:text="@string/call_doctor"
+                android:drawableTop="@drawable/ic_call" />
+
+            <Button
+                android:id="@+id/btn_telehealth"
+                style="@style/PrimaryButton"
+                android:text="@string/telehealth"
+                android:drawableTop="@drawable/ic_video_call" />
+
+            <Button
+                android:id="@+id/btn_back_to_home"
+                style="@style/SecondaryButton"
+                android:text="@string/back_to_home"
+                android:drawableTop="@drawable/ic_home" />
+
+        </LinearLayout>
+
+        <!-- Medical Disclaimer -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/medical_disclaimer"
+            android:textSize="12sp"
+            android:textColor="@color/text_muted"
+            android:textAlignment="center"
+            android:padding="8dp"
+            android:background="@color/gray_100" />
+
+    </LinearLayout>
+
+</ScrollView>

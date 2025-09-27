@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Emergency Triage</string>
+    
+    <!-- Main Activity -->
+    <string name="start_recording">Start Recording</string>
+    <string name="stop_recording">Stop Recording</string>
+    <string name="select_image">Select Image</string>
+    <string name="capture_image">Capture Image</string>
+    <string name="analyze">Analyze</string>
+    <string name="transcribed_text">Transcribed text will appear here</string>
+    <string name="status_ready">Ready - Select image and record symptoms</string>
+    
+    <!-- Result Screen -->
+    <string name="predicted_disease">Predicted Disease:</string>
+    <string name="confidence_level">Confidence Level:</string>
+    <string name="urgency_level">Urgency Level:</string>
+    <string name="symptoms">Symptoms:</string>
+    <string name="precautions">Precautions:</string>
+    <string name="call_doctor">Call Doctor</string>
+    <string name="telehealth">Telehealth</string>
+    <string name="back_to_home">Back to Home</string>
+    
+    <!-- Telehealth Screen -->
+    <string name="telehealth_title">Connect with Healthcare Professionals</string>
+    <string name="telehealth_description">Based on your triage results, you can connect with licensed healthcare professionals through these telehealth services for immediate consultation and guidance.</string>
+    <string name="connect_teladoc">Connect to Teladoc</string>
+    <string name="connect_amwell">Connect to Amwell</string>
+    <string name="connect_doctor_on_demand">Connect to Doctor on Demand</string>
+    <string name="connect_mdlive">Connect to MDLive</string>
+    <string name="emergency_call">Emergency Call 911</string>
+    <string name="back_to_results">Back to Results</string>
+    
+    <!-- Permissions -->
+    <string name="permission_camera_rationale">Camera permission is required to capture images for analysis</string>
+    <string name="permission_audio_rationale">Microphone permission is required to record symptom descriptions</string>
+    <string name="permission_storage_rationale">Storage permission is required to access images from gallery</string>
+    <string name="permission_phone_rationale">Phone permission is required for emergency calling functionality</string>
+    
+    <!-- Error messages -->
+    <string name="error_no_camera">Camera not available</string>
+    <string name="error_no_microphone">Microphone not available</string>
+    <string name="error_image_processing">Error processing image</string>
+    <string name="error_speech_recognition">Speech recognition failed</string>
+    <string name="error_analysis_failed">Analysis failed. Please try again.</string>
+    <string name="error_model_loading">Error loading AI models</string>
+    
+    <!-- Status messages -->
+    <string name="status_listening">Listening... Describe your symptoms</string>
+    <string name="status_processing">Processing... Please wait</string>
+    <string name="status_analyzing">Analyzing... Please wait</string>
+    <string name="status_complete">Analysis complete</string>
+    
+    <!-- Medical Disclaimer -->
+    <string name="medical_disclaimer">MEDICAL DISCLAIMER: This app provides guidance only and is not a substitute for professional medical advice. In emergencies, call 911 immediately.</string>
+    
+    <!-- Urgency Levels -->
+    <string name="urgency_low">LOW PRIORITY</string>
+    <string name="urgency_moderate">MODERATE PRIORITY</string>
+    <string name="urgency_high">HIGH PRIORITY</string>
+    
+    <string name="urgency_low_desc">Monitor symptoms and seek routine care</string>
+    <string name="urgency_moderate_desc">Seek medical attention within 24-48 hours</string>
+    <string name="urgency_high_desc">Seek immediate medical attention</string>
+</resources>

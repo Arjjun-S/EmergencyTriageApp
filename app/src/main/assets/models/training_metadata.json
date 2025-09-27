@@ -1,0 +1,26 @@
+{
+  "model_type": "skin_disease_cnn",
+  "training_date": "2025-09-27T00:30:22.553693",
+  "config": {
+    "image_size": [
+      64,
+      64
+    ],
+    "batch_size": 16,
+    "epochs": 3,
+    "learning_rate": 0.001,
+    "num_classes": 5,
+    "model_output_path": "C:/Users/ADMIN/Desktop/SamsungPrism/EmergencyTriageApp/app/src/main/assets/models/",
+    "synthetic_data_size": 100
+  },
+  "class_names": [
+    "Acne",
+    "Actinic_Keratosis",
+    "Benign_tumors",
+    "Bullous",
+    "Candidiasis"
+  ],
+  "final_accuracy": 0.9950000047683716,
+  "final_val_accuracy": 0.15000000596046448,
+  "training_epochs": 3
+}

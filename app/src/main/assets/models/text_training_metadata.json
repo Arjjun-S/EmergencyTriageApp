@@ -1,0 +1,22 @@
+{
+  "model_type": "symptom_text_classifier",
+  "training_date": "2025-09-27T00:31:19.335734",
+  "config": {
+    "max_sequence_length": 128,
+    "vocab_size": 5000,
+    "embedding_dim": 100,
+    "batch_size": 16,
+    "epochs": 3,
+    "learning_rate": 0.001,
+    "model_output_path": "C:/Users/ADMIN/Desktop/SamsungPrism/EmergencyTriageApp/app/src/main/assets/models/",
+    "synthetic_data_size": 1000
+  },
+  "urgency_levels": {
+    "Green": 0,
+    "Yellow": 1,
+    "Red": 2
+  },
+  "final_accuracy": 0.8708333373069763,
+  "final_val_accuracy": 1.0,
+  "training_epochs": 3
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="red_600">#E53E3E</color>
+    <color name="red_700">#C53030</color>
+    <color name="red_800">#9B2C2C</color>
+    
+    <!-- Secondary Colors -->
+    <color name="blue_600">#3182CE</color>
+    <color name="blue_700">#2C5282</color>
+    
+    <!-- Urgency Colors -->
+    <color name="urgency_green">#38A169</color>
+    <color name="urgency_green_light">#C6F6D5</color>
+    <color name="urgency_yellow">#F6AD55</color>
+    <color name="urgency_yellow_light">#FED7AA</color>
+    <color name="urgency_red">#E53E3E</color>
+    <color name="urgency_red_light">#FEB2B2</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#1A202C</color>
+    <color name="text_secondary">#4A5568</color>
+    <color name="text_muted">#A0AEC0</color>
+    
+    <!-- Background Colors -->
+    <color name="background_primary">#FFFFFF</color>
+    <color name="background_secondary">#F7FAFC</color>
+    <color name="background_card">#FFFFFF</color>
+    
+    <!-- Common Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray_100">#F7FAFC</color>
+    <color name="gray_200">#EDF2F7</color>
+    <color name="gray_300">#E2E8F0</color>
+    <color name="gray_400">#CBD5E0</color>
+    <color name="gray_500">#A0AEC0</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#38A169</color>
+    <color name="warning">#F6AD55</color>
+    <color name="error">#E53E3E</color>
+    <color name="info">#3182CE</color>
+</resources>
