@@ -1,6 +1,6 @@
-# 🎨 Android App Icon Guide
+# Android App Icon Guide
 
-## 📍 Where to Save Your App Icon Images
+## Where to Save Your App Icon Images
 
 Your Emergency AI Triage App icon should be saved in the following directories with these exact sizes:
 
@@ -18,18 +18,18 @@ app/src/main/res/
     └── ic_launcher.png          (192×192 pixels)
 ```
 
-## 🎯 Icon Design Requirements
+## Icon Design Requirements
 
 ### Design Guidelines
 - **Theme**: Medical/Healthcare related
 - **Style**: Modern, clean, professional
 - **Colors**: Consider using medical colors (red cross, blue, green)
 - **Symbol**: Could include:
-  - 🏥 Medical cross
-  - 🔍 Magnifying glass (for AI analysis)
-  - 📱 Phone with medical symbol
-  - 🧠 Brain icon (for AI)
-  - ❤️ Heart with pulse line
+  - Medical cross
+  - Magnifying glass (for AI analysis)
+  - Phone with medical symbol
+  - Brain icon (for AI)
+  - Heart with pulse line
 
 ### Technical Requirements
 - **Format**: PNG (recommended) or WebP
@@ -38,7 +38,7 @@ app/src/main/res/
 - **Padding**: Leave 10% padding around the icon content
 - **No text**: Icons should be symbol-based, not text-based
 
-## 🎨 Icon Size Chart
+## Icon Size Chart
 
 | Density | Directory | Size (px) | Use Case |
 |---------|-----------|-----------|----------|
@@ -48,7 +48,8 @@ app/src/main/res/
 | xxhdpi  | mipmap-xxhdpi  | 144×144 | Extra extra high density |
 | xxxhdpi | mipmap-xxxhdpi | 192×192 | Extra extra extra high density |
 
-## 🛠️ How to Create Icons
+
+## How to Create Icons
 
 ### Option 1: Online Icon Generators
 1. **Android Asset Studio** (Recommended)
@@ -79,7 +80,7 @@ Use AI tools like:
 **Prompt suggestion**: 
 *"Modern medical app icon, red cross with AI circuit pattern, clean minimalist design, square format, professional healthcare branding"*
 
-## 📝 Suggested Icon Concepts
+## Suggested Icon Concepts
 
 ### Concept 1: Medical Cross + AI
 - Red medical cross
@@ -101,7 +102,7 @@ Use AI tools like:
 - Smartphone silhouette
 - Red and blue colors
 
-## 🔧 Implementation Steps
+## Implementation Steps
 
 1. **Create your icon** in 512×512 pixels
 2. **Generate all sizes** using Android Asset Studio
@@ -109,7 +110,7 @@ Use AI tools like:
 4. **Test the icon** by building and installing the app
 5. **Verify** the icon appears correctly on different devices
 
-## 📱 Testing Your Icon
+## Testing Your Icon
 
 After adding the icon:
 1. Build your app (`./gradlew assembleDebug`)
@@ -122,13 +123,16 @@ After adding the icon:
    - Settings > Apps
    - Notification area (if applicable)
 
-## 🎨 Current Status
+## Current Status
 
-✅ **Mipmap directories created**
-❌ **Icon files need to be added**
-❌ **App manifest needs icon reference**
+**Completed:**
+- Mipmap directories created
 
-## 🚀 Next Steps
+**Pending:**
+- Icon files need to be added
+- App manifest has icon reference ready
+
+## Next Steps
 
 1. Create or generate your app icon
 2. Save the 5 different sizes in their respective folders
