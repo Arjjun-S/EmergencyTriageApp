@@ -4,7 +4,7 @@ Talk. Show. Get help — in minutes. This Android app performs on-device triage 
 
 Team Blue Orchids — SRM Institute of Science and Technology (KTR)
 
-Members: Arjjun S, Bala Tharun R, B B Hemanth, S M Sudharshan, H A Pranav Jai
+Members: Arjjun S, B B Hemanth, H A Pranav Jai, S M Sudharshan, Bala Tharun R
 
 ---
 
