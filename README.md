@@ -1,4 +1,4 @@
-## 🏥 Emergency AI Triage App (Android)
+## Emergency AI Triage App (Android)
 
 Talk. Show. Get help — in minutes. This Android app performs on-device triage by combining voice (symptoms), text, and skin-image analysis with TensorFlow Lite. It is designed to run smoothly on everyday devices and keep data private on your phone.
 
@@ -34,10 +34,6 @@ Members: Arjjun S, B B Hemanth, H A Pranav Jai, S M Sudharshan, Bala Tharun R
 
 Video demo:
 
-
-Uploading Explanation_Video.mp4…
-
-
 - Detailed documentation: https://github.com/Arjjun-S/EmergencyTriageApp/blob/767614fcddc16df7869cb860f068a1fa86f7f719/BLUE%20ORCHIDS.pdf
 
 Replace the placeholders with your actual URLs. Keep this section even if assets are already uploaded to GitHub.
@@ -68,8 +64,8 @@ Why it runs well on-device:
 
 1. Launch the app and grant Camera/Microphone permissions
 2. Optional: capture or select a skin image
-3. Press “Record” to dictate symptoms; press “Stop” when done
-4. Tap “Analyze” to run multimodal inference
+3. Press "Record" to dictate symptoms; press "Stop" when done
+4. Tap "Analyze" to run multimodal inference
 5. Review urgency flag, predicted condition(s), confidence, and precautions
 6. Use telehealth shortcuts if the case is urgent
 
@@ -79,7 +75,7 @@ The app displays a small banner if ML assets are missing, and uses rule-based fa
 
 ## 4) Project Structure
 
-```
+```bash
 EmergencyTriageApp/
 ├── app/                           # Android application (Kotlin, MVVM)
 │   ├── src/main/
@@ -115,7 +111,7 @@ Prerequisites
 
 Steps (Windows PowerShell)
 
-```powershell
+```bash
 # Clone and open in Android Studio
 git clone https://github.com/Arjjun-S/EmergencyTriageApp.git
 cd EmergencyTriageApp
@@ -136,7 +132,7 @@ Place these files in `app/src/main/assets/models/`:
 
 Final asset layout:
 
-```
+```bash
 app/src/main/assets/models/
   rash_model.tflite
   rash_model_labels.txt
@@ -155,7 +151,7 @@ If any assets are missing, the app still runs with safe fallbacks.
 1) Image dataset (skin/rash):
 
 - Recommended Keras directory layout:
-  ```
+  ```bash
   datasets/SkinDisease/
     train/
       Acne/ ...jpg
@@ -177,21 +173,21 @@ If any assets are missing, the app still runs with safe fallbacks.
 
 Environment setup (Windows PowerShell):
 
-```powershell
+```bash
 python -m venv .venv ; .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
 Train and convert image model:
 
-```powershell
+```bash
 python .\ml\train_image_model.py
 python .\ml\convert_image_to_tflite.py
 ```
 
 Train and convert text model:
 
-```powershell
+```bash
 python .\ml\train_text_model.py
 python .\ml\convert_text_to_tflite.py
 ```
@@ -222,7 +218,7 @@ On-Device Inference
 - Entire inference pipeline runs via TFLite; telehealth is optional.
 
 Expected (with full datasets; indicative)
-- Image: ~85–92% accuracy
+- Image: ~84–92% accuracy
 - Text: ~88–95% accuracy
 
 ---
@@ -254,8 +250,8 @@ Training defaults
 ## 12) Troubleshooting
 
 | Issue | Resolution |
-|------|------------|
-| “Models missing” banner | Confirm files under `app/src/main/assets/models/` |
+|-------|------------|
+| "Models missing" banner | Confirm files under `app/src/main/assets/models/` |
 | Build errors | Let Gradle sync; Build > Clean Project; restart Android Studio |
 | Poor image results | Improve lighting/quality, expand training data |
 | Speech not captured | Check microphone permission; try in quiet area |
@@ -265,13 +261,13 @@ Training defaults
 ## 13) Testing
 
 Android tests
-```powershell
+```bash
 ./gradlew test
 ./gradlew connectedAndroidTest
 ```
 
 ML tests (optional, if you add Python tests)
-```powershell
+```bash
 cd ml
 python -m pytest tests/
 ```
@@ -283,7 +279,7 @@ python -m pytest tests/
 If this repository is not public:
 1. Open the GitHub repo page
 2. Settings → General → Danger Zone
-3. “Change repository visibility” → Public
+3. "Change repository visibility" → Public
 
 ---
 
@@ -311,307 +307,145 @@ Support
 
 This app provides informational triage assistance only and does not replace professional medical advice, diagnosis, or treatment. For emergencies, call your local emergency number immediately.
 
-   datasets/SkinDisease/HAM10000_images_part_2/
+---
 
-   ```#### **Step 3: Train Models**
+## Alternative Datasets for Enhanced Training
 
-```bash
-
-#### 2. Alternative Datasets for Enhanced Trainingcd ml/
-
-
-
-**ISIC 2019 Challenge Dataset:**# Train image classification model
-
-- **URL**: https://challenge.isic-archive.com/data/python train_image_model.py
-
+**ISIC 2019 Challenge Dataset:**
+- **URL**: https://challenge.isic-archive.com/data/
 - **Size**: 25,331 images
+- **Classes**: 8 diagnostic categories
+- **Use Case**: More diverse skin lesion types
 
-- **Classes**: 8 diagnostic categories# Train text classification model  
-
-- **Use Case**: More diverse skin lesion typespython train_text_model.py
-
-
-
-**DermNet Dataset:**# Convert models to TensorFlow Lite
-
-- **URL**: http://www.dermnet.com/python convert_image_to_tflite.py
-
-- **Size**: 23,000+ imagespython convert_text_to_tflite.py
-
-- **Classes**: 23 skin condition classes```
-
+**DermNet Dataset:**
+- **URL**: http://www.dermnet.com/
+- **Size**: 23,000+ images
+- **Classes**: 23 skin condition classes
 - **Use Case**: Broader skin condition coverage
 
-## 🎮 How to Use the App
-
 **PH2 Dataset:**
-
-- **URL**: https://www.fc.up.pt/addi/ph2%20database.html### **1. Launch the App**
-
-- **Size**: 200 dermoscopic images- Open the Emergency Triage App on your Android device
-
-- **Use Case**: Melanoma detection focus- Grant microphone and camera permissions when prompted
-
-
-
-### Training Setup with Complete Datasets### **2. Record Symptoms (Voice Input)**
-
-- Tap the **🎤 Record** button
-
-#### Step 1: Python Environment Setup- Speak clearly about your symptoms
-
-```bash- Example: *"I have a red rash on my arm with itching and swelling"*
-
-# Create virtual environment- Tap **🔇 Stop** when finished
-
-python -m venv venv
-
-### **3. Capture/Upload Image (Optional)**
-
-# Activate environment- Tap **📸 Capture** to take a photo with camera
-
-# Windows:- Or tap **🖼️ Gallery** to select an existing image
-
-venv\Scripts\activate- Ensure the image is clear and well-lit
-
-# Linux/Mac:
-
-source venv/bin/activate### **4. Get AI Analysis**
-
-- Tap **🔍 Analyze** to start processing
-
-# Install dependencies- The AI will analyze both text and image (if provided)
-
-pip install -r requirements.txt- Wait for results (usually 2-5 seconds)
-
-```
-
-### **5. Review Results**
-
-#### Step 2: Configure Training Data- **Urgency Level**: 🟢 Green (Low) / 🟡 Yellow (Medium) / 🔴 Red (High)
-
-```bash- **Confidence Score**: AI's confidence in the diagnosis
-
-# Ensure datasets are in correct structure:- **Recommended Actions**: Specific steps to take
-
-datasets/- **Precautions**: Disease-specific precautionary measures
-
-├── DiseaseAndSymptoms.csv
-
-├── DiseasePrecaution.csv### **6. Take Action**
-
-└── SkinDisease/- Follow the recommended actions
-
-    ├── HAM10000_metadata.csv- Use **🏥 Call Doctor** for telehealth if urgent
-
-    ├── HAM10000_images_part_1/  # 5,000+ images- Save results for medical consultation
-
-    └── HAM10000_images_part_2/  # 5,000+ images
-
-```## � Dataset Information
-
-
-
-#### Step 3: Train High-Accuracy Models### **Disease and Symptoms Dataset**
-
-```bash- **File**: `datasets/DiseaseAndSymptoms.csv`
-
-cd ml/- **Records**: ~40 diseases with associated symptoms
-
-- **Columns**: Disease, Symptom_1 to Symptom_17, Severity Level
-
-# Train image classification model with full dataset
-
-python train_image_model.py### **Disease Precautions Dataset**  
-
-- **File**: `datasets/DiseasePrecaution.csv`
-
-# Train text classification model- **Records**: Precautionary measures for each disease
-
-python train_text_model.py- **Columns**: Disease, Precaution_1 to Precaution_4
-
-
-
-# Convert trained models to TensorFlow Lite### **Skin Disease Image Dataset**
-
-python convert_image_to_tflite.py- **Location**: `datasets/SkinDisease/`
-
-python convert_text_to_tflite.py- **Format**: JPEG images, 224×224 recommended
-
-```- **Classes**: 22 common skin conditions
-
-- **Note**: Sample images included, download full dataset for training
-
-### Expected Performance with Full Datasets
-
-- **Skin Disease Classification**: 85-92% accuracy## 🔧 Configuration
-
-- **Text Symptom Analysis**: 88-95% accuracy
-
-- **Training Time**: 2-4 hours on GPU, 8-12 hours on CPU### **Android App Configuration**
-
-- **Model Size**: 15-25 MB per model (optimized for mobile)- **Minimum SDK**: API 21 (Android 5.0)
-
-- **Target SDK**: API 34 (Android 14)
-
-**Note**: Training with complete datasets significantly improves model accuracy and real-world performance compared to sample data.- **Permissions**: CAMERA, RECORD_AUDIO, INTERNET
-
-- **Model Size**: ~50MB total (optimized for mobile)
+- **URL**: https://www.fc.up.pt/addi/ph2%20database.html
+- **Size**: 200 dermoscopic images
+- **Use Case**: Melanoma detection focus
 
 ## How to Use the App
 
-### **ML Training Configuration**
+### **1. Launch the App**
+- Open the Emergency Triage App on your Android device
+- Grant microphone and camera permissions when prompted
 
-### 1. Launch the App- **Image Size**: 224×224×3
-
-- Open the Emergency Triage App on your Android device- **Batch Size**: 32
-
-- Grant microphone and camera permissions when prompted- **Epochs**: 50-100
-
-- **Learning Rate**: 0.001
-
-### 2. Record Symptoms (Voice Input)- **Optimization**: Adam optimizer
-
+### **2. Record Symptoms (Voice Input)**
 - Tap the **Record** button
-
-- Speak clearly about your symptoms## 🧪 Testing
-
+- Speak clearly about your symptoms
 - Example: *"I have a red rash on my arm with itching and swelling"*
+- Tap **Stop** when finished
 
-- Tap **Stop** when finished### **Unit Tests**
-
-```bash
-
-### 3. Capture/Upload Image (Optional)# Run Android unit tests
-
-- Tap **Capture** to take a photo with camera./gradlew test
-
+### **3. Capture/Upload Image (Optional)**
+- Tap **Capture** to take a photo with camera
 - Or tap **Gallery** to select an existing image
+- Ensure the image is clear and well-lit
 
-- Ensure the image is clear and well-lit# Run instrumented tests  
-
-./gradlew connectedAndroidTest
-
-### 4. Get AI Analysis```
-
+### **4. Get AI Analysis**
 - Tap **Analyze** to start processing
+- The AI will analyze both text and image (if provided)
+- Wait for results (usually 2-5 seconds)
 
-- The AI will analyze both text and image (if provided)### **ML Model Tests**
-
-- Wait for results (usually 2-5 seconds)```bash
-
-cd ml/
-
-### 5. Review Resultspython -m pytest tests/
-
-- **Urgency Level**: Green (Low) / Yellow (Medium) / Red (High)```
-
+### **5. Review Results**
+- **Urgency Level**: Green (Low) / Yellow (Medium) / Red (High)
 - **Confidence Score**: AI's confidence in the diagnosis
-
-- **Recommended Actions**: Specific steps to take## � Troubleshooting
-
+- **Recommended Actions**: Specific steps to take
 - **Precautions**: Disease-specific precautionary measures
 
-### **Common Issues**
+### **6. Take Action**
+- Follow the recommended actions
+- Use **Call Doctor** for telehealth if urgent
+- Save results for medical consultation
 
-### 6. Take Action
+## Dataset Information
 
-- Follow the recommended actions| Issue | Solution |
+### **Disease and Symptoms Dataset**
+- **File**: `datasets/DiseaseAndSymptoms.csv`
+- **Records**: ~40 diseases with associated symptoms
+- **Columns**: Disease, Symptom_1 to Symptom_17, Severity Level
 
-- Use **Call Doctor** for telehealth if urgent|-------|----------|
+### **Disease Precautions Dataset**
+- **File**: `datasets/DiseasePrecaution.csv`
+- **Records**: Precautionary measures for each disease
+- **Columns**: Disease, Precaution_1 to Precaution_4
 
-- Save results for medical consultation| **App crashes on startup** | Check permissions in Settings > Apps > Emergency Triage |
+### **Skin Disease Image Dataset**
+- **Location**: `datasets/SkinDisease/`
+- **Format**: JPEG images, 224×224 recommended
+- **Classes**: 22 common skin conditions
+- **Note**: Sample images included, download full dataset for training
 
-| **Models not loading** | Ensure TensorFlow Lite files are in `app/src/main/assets/` |
+### Training Setup with Complete Datasets
 
-## Configuration| **Poor image classification** | Use well-lit, clear images; retrain with more data |
-
-| **Voice recognition fails** | Check microphone permissions and speak clearly |
-
-### Android App Configuration| **Build errors** | Clean project: `Build > Clean Project` in Android Studio |
-
-- **Minimum SDK**: API 21 (Android 5.0)
-
-- **Target SDK**: API 34 (Android 14)### **Performance Optimization**
-
-- **Permissions**: CAMERA, RECORD_AUDIO, INTERNET- **RAM Usage**: ~200-300MB typical usage
-
-- **Model Size**: ~50MB total (optimized for mobile)- **Storage**: ~100MB for app + models
-
-- **Battery**: Minimal impact with on-device processing
-
-### ML Training Configuration- **Network**: Only required for telehealth features
-
-- **Image Size**: 224×224×3
-
-- **Batch Size**: 32## 🤝 Contributing
-
-- **Epochs**: 50-100
-
-- **Learning Rate**: 0.001We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md).
-
-- **Optimization**: Adam optimizer
-
-### **Areas for Contribution**
-
-## Testing- 🔬 Additional disease categories
-
-- 🎨 UI/UX improvements  
-
-### Unit Tests- 🧠 ML model enhancements
-
-```bash- 🌐 Internationalization
-
-# Run Android unit tests- � iOS version
-
-./gradlew test- ♿ Accessibility features
-
-
-
-# Run instrumented tests  ## 📄 License
-
-./gradlew connectedAndroidTest
-
-```This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
-
-### ML Model Tests## 🙏 Acknowledgments
+#### Step 1: Python Environment Setup
 
 ```bash
+# Create virtual environment
+python -m venv venv
 
-cd ml/- **HAM10000 Dataset**: Harvard Dataverse
+# Activate environment
+# Windows:
+venv\Scripts\activate
+# Linux/Mac:
+source venv/bin/activate
 
-python -m pytest tests/- **TensorFlow Team**: For mobile ML framework
+# Install dependencies
+pip install -r requirements.txt
+```
 
-```- **Android Team**: For Speech Recognition APIs
+#### Step 2: Configure Training Data
 
-- **Medical Consultants**: For domain expertise
+```bash
+# Ensure datasets are in correct structure:
+datasets/
+├── DiseaseAndSymptoms.csv
+├── DiseasePrecaution.csv
+└── SkinDisease/
+    ├── HAM10000_metadata.csv
+    ├── HAM10000_images_part_1/  # 5,000+ images
+    └── HAM10000_images_part_2/  # 5,000+ images
+```
 
-## Troubleshooting
+#### Step 3: Train Models
 
-## 📞 Support
+```bash
+cd ml/
 
-### Common Issues
+# Train image classification model
+python train_image_model.py
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/EmergencyTriageApp/issues)
+# Train text classification model
+python train_text_model.py
 
-| Issue | Solution |- **Discussions**: [GitHub Discussions](https://github.com/yourusername/EmergencyTriageApp/discussions)
+# Convert models to TensorFlow Lite
+python convert_image_to_tflite.py
+python convert_text_to_tflite.py
+```
 
-|-------|----------|- **Email**: support@emergencytriage.app
+### Expected Performance with Full Datasets
 
+- **Skin Disease Classification**: 85-92% accuracy
+- **Text Symptom Analysis**: 88-95% accuracy
+- **Training Time**: 2-4 hours on GPU, 8-12 hours on CPU
+- **Model Size**: 15-25 MB per model (optimized for mobile)
+
+**Note**: Training with complete datasets significantly improves model accuracy and real-world performance compared to sample data.
+
+## Common Issues
+
+| Issue | Solution |
+|-------|----------|
 | **App crashes on startup** | Check permissions in Settings > Apps > Emergency Triage |
-
-| **Models not loading** | Ensure TensorFlow Lite files are in `app/src/main/assets/` |---
-
+| **Models not loading** | Ensure TensorFlow Lite files are in `app/src/main/assets/` |
 | **Poor image classification** | Use well-lit, clear images; retrain with more data |
-
-| **Voice recognition fails** | Check microphone permissions and speak clearly |⚠️ **Medical Disclaimer**: This app is for informational purposes only and should not replace professional medical advice. Always consult healthcare professionals for medical emergencies.
-
+| **Voice recognition fails** | Check microphone permissions and speak clearly |
 | **Build errors** | Clean project: `Build > Clean Project` in Android Studio |
 
-### Performance Optimization
+### **Performance Optimization**
 - **RAM Usage**: ~200-300MB typical usage
 - **Storage**: ~100MB for app + models
 - **Battery**: Minimal impact with on-device processing
