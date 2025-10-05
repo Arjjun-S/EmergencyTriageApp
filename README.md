@@ -1,711 +1,312 @@
-# Smart Medical Triage: Multimodal AI (Android)
+## 🏥 Emergency AI Triage App (Android)
 
-Talk. Show. Get help — in minutes.
-
-- Combines voice, image, and text for real-time triage
-- Runs on smartphones with lightweight AI models (TensorFlow Lite)
-- Privacy-first: designed for HIPAA/GDPR-style compliance
+Talk. Show. Get help — in minutes. This Android app performs on-device triage by combining voice (symptoms), text, and skin-image analysis with TensorFlow Lite. It is designed to run smoothly on everyday devices and keep data private on your phone.
 
 Team Blue Orchids — SRM Institute of Science and Technology (KTR)
 
-Theme: Multimodal AI | Members: Arjjun S, Bala Tharun R, B B Hemanth, S M Sudharshan, H A Pranav Jai
+Members: Arjjun S, Bala Tharun R, B B Hemanth, S M Sudharshan, H A Pranav Jai
 
-## What’s in this repo
+---
 
-- Android app (Kotlin, MVVM) under `app/`
-- ML training scripts under `ml/` for:
-   - Image model: skin/rash classifier (`train_image_model.py`)
+## Table of Contents
 
-   - Text model: symptom severity classifier (`train_text_model.py`)
-- Conversion scripts to TensorFlow Lite: `convert_image_to_tflite.py`, `convert_text_to_tflite.py`
-- Sample datasets CSVs under `datasets/`
+1. Submissions
+2. Overview and Key Features
+3. App Interface (Workflow)
+4. Project Structure
+5. Getting Started (Android)
+6. ML Assets Placement
+7. Datasets and Data Preparation
+8. Training and Converting Models
+9. AI/ML Pipeline and How It Works
+10. Configuration (Android + ML)
+11. Performance and Optimizations
+12. Troubleshooting
+13. Testing
+14. Make the Repository Public
+15. License, Ethics, and Data
+16. Acknowledgments and Support
+17. Medical Disclaimer
 
-The app runs even without ML assets. If models are missing, it uses safe rule-based fallbacks and shows a “models missing” status in the UI.
+---
 
-## Quick start (Android)
+## 1) Submissions
 
-1) Open the project in Android Studio (Giraffe+).
-2) Build and run on a device (Android 8+). No internet required for basic flows.
-3) You can record symptoms or type text, and optionally select or capture an image.
+- Video demo: https://youtu.be/PLACEHOLDER_VIDEO
+- Presentation: https://example.com/PLACEHOLDER_RESOURCES
+- Detailed documentation: https://example.com/PLACEHOLDER_RESOURCES
 
-Fallback mode without ML:
-- Image: returns “Unknown Skin Condition” with low confidence.
-- Text: rule-based severity scoring using medical keywords.
+Replace the placeholders with your actual URLs. Keep this section even if assets are already uploaded to GitHub.
 
-- Fusion: combines both to produce an urgency level and precautions.
+---
 
-You’ll see a status banner in the home screen if models are missing.
+## 2) Overview and Key Features
 
-## Where to place ML assets
+The app combines voice recognition, image analysis, and text processing to provide intelligent medical triage decisions. Using on-device ML (TensorFlow Lite), it classifies likely conditions, computes urgency, and suggests recommended actions.
 
-Place these files under `app/src/main/assets/models/`:
+- Voice-to-Text: Capture symptoms via Android SpeechRecognizer
+- Image Classification: AI-powered skin condition detection using a CNN
+- Text Classification: Estimate severity from typed/dictated symptoms
+- Multimodal Fusion: Weighted fusion of image + text predictions
+- Urgency Flags: Green / Yellow / Red
+- Disease Precautions: Maps conditions to recommended actions
+- Telehealth Integration: Hooks to call/connect to care
+- Offline-First: All ML inference on-device (privacy-friendly)
 
-- Image model: `rash_model.tflite` and `rash_model_labels.txt`
+Why it runs well on-device:
+- Mobile-friendly TFLite models; quantization enabled where possible
+- Efficient pre/post-processing for low latency
+- Graceful fallbacks: app remains usable even if models are missing
+
+---
+
+## 3) App Interface (Workflow)
+
+1. Launch the app and grant Camera/Microphone permissions
+2. Optional: capture or select a skin image
+3. Press “Record” to dictate symptoms; press “Stop” when done
+4. Tap “Analyze” to run multimodal inference
+5. Review urgency flag, predicted condition(s), confidence, and precautions
+6. Use telehealth shortcuts if the case is urgent
+
+The app displays a small banner if ML assets are missing, and uses rule-based fallback logic so you can still test end-to-end flows.
+
+---
+
+## 4) Project Structure
+
+```
+EmergencyTriageApp/
+├── app/                           # Android application (Kotlin, MVVM)
+│   ├── src/main/
+│   │   ├── java/com/example/emergencytriage/
+│   │   │   ├── MainActivity.kt
+│   │   │   ├── ml/                # On-device inference (TFLite)
+│   │   │   ├── data/              # Repositories, models, cache
+│   │   │   └── ui/                # Screens and UI
+│   │   ├── assets/models/         # Place your .tflite and label files here
+│   │   └── res/                   # Layouts, drawables, icons
+│   └── build.gradle
+├── ml/                            # Python training & conversion scripts
+│   ├── train_image_model.py
+│   ├── train_text_model.py
+│   ├── convert_image_to_tflite.py
+│   └── convert_text_to_tflite.py
+├── datasets/                      # Sample CSVs & example images
+│   ├── DiseaseAndSymptoms.csv
+│   ├── DiseasePrecaution.csv
+│   └── SkinDisease/
+├── requirements.txt               # Python deps for model training
+├── ML_TRAINING_SUMMARY.md         # Training notes/results
+└── README.md
+```
+
+---
+
+## 5) Getting Started (Android)
+
+Prerequisites
+- Android Studio (Giraffe/Flamingo or newer)
+- JDK 17 (project targets Java/Kotlin 17)
+
+Steps (Windows PowerShell)
+
+```powershell
+# Clone and open in Android Studio
+git clone https://github.com/Arjjun-S/EmergencyTriageApp.git
+cd EmergencyTriageApp
+
+# Open the folder in Android Studio and let Gradle sync
+# Run on a device/emulator (Android 8.0 / API 26+ recommended)
+```
+
+---
+
+## 6) ML Assets Placement
+
+Place these files in `app/src/main/assets/models/`:
+
+- Image model: `rash_model.tflite`, `rash_model_labels.txt`
 - Text model: `text_classifier.tflite`, `text_classifier_labels.txt`, `vocab.txt`
-- Optional data: `DiseasePrecaution.csv` (precaution lookups; a default is bundled in code if missing)
+- Optional data: `DiseasePrecaution.csv`
 
-Folder structure:
+Final asset layout:
 
+```
 app/src/main/assets/models/
-   rash_model.tflite
-   rash_model_labels.txt
+  rash_model.tflite
+  rash_model_labels.txt
+  text_classifier.tflite
+  text_classifier_labels.txt
+  vocab.txt
+  DiseasePrecaution.csv
+```
 
-   text_classifier.tflite
-   text_classifier_labels.txt
-   vocab.txt
-   DiseasePrecaution.csv
+If any assets are missing, the app still runs with safe fallbacks.
 
-If any of the above are missing, the app still runs using fallbacks.
+---
 
-## Datasets: how to collect and prepare
+## 7) Datasets and Data Preparation
 
 1) Image dataset (skin/rash):
-- Recommended structure for Keras generators:
-   datasets/SkinDisease/
-      train/
-         Acne/ ...jpg
-         Eczema/ ...jpg
-         ...
-      test/ (optional)
 
-- Use public datasets such as HAM10000 (license-compliant) and augment with additional classes. Ensure balanced classes and anonymized images.
+- Recommended Keras directory layout:
+  ```
+  datasets/SkinDisease/
+    train/
+      Acne/ ...jpg
+      Eczema/ ...jpg
+      ...
+    test/  (optional)
+  ```
+- Use public datasets (e.g., HAM10000, ISIC) where licenses permit.
+- Keep classes balanced and remove any personal identifiers/EXIF.
 
 2) Symptoms dataset (text):
-- Use `datasets/DiseaseAndSymptoms.csv` and/or synthesize sentences from symptom lists.
-- Columns like Symptom_1..Symptom_n; optionally include a Severity column. If Severity is missing, the training script generates labels from keywords.
 
-Privacy note: Never include personal identifiers; scrub EXIF from images.
+- Use `datasets/DiseaseAndSymptoms.csv` with `Symptom_1..Symptom_n` columns.
+- Optional `Severity` column; if missing, the training script infers labels from keywords.
 
-## Train the models (two Python scripts)
+---
 
-Prereqs on Windows (PowerShell):
+## 8) Training and Converting Models
+
+Environment setup (Windows PowerShell):
 
 ```powershell
 python -m venv .venv ; .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
-1) Train image model
-
-Edit paths at the top of `ml/train_image_model.py` if needed. Default expects images under `datasets/SkinDisease/`.
+Train and convert image model:
 
 ```powershell
 python .\ml\train_image_model.py
 python .\ml\convert_image_to_tflite.py
 ```
 
-Outputs expected under `app/src/main/assets/models/` as `rash_model.tflite` and `rash_model_labels.txt` (the Keras `.h5` is saved too).
-
-2) Train text model
-
-Default input is `datasets/DiseaseAndSymptoms.csv`. You can change `model_type` to `simple_nn` or `lstm` for easier conversion to TFLite.
+Train and convert text model:
 
 ```powershell
 python .\ml\train_text_model.py
 python .\ml\convert_text_to_tflite.py
 ```
 
-Outputs: `text_classifier.tflite`, `text_classifier_labels.txt`, and `vocab.txt` in `app/src/main/assets/models/`.
-
-Voice/NLP resources to download:
-- Android device speech recognizer (built-in Google Speech Service; ensure it’s enabled).
-- Python: Transformers/TF if you pick DistilBERT; otherwise Keras-only models are lighter and easier to convert.
-
-## Running the app in “static” mode
-
-If models are missing (fresh clone), the app shows a status note and uses:
-- Rule-based text severity
-- Default image placeholder classification
-- Hardcoded precaution defaults
-
-You can still test the complete UI and telehealth flow.
-
-## Better ways and suggested changes
-
-- Prefer lightweight text models (simple NN/LSTM) over DistilBERT for TFLite. DistilBERT to TFLite is possible but heavier and requires careful conversion; start simple and iterate.
-- Quantize image model to float16 or int8 for Samsung devices to improve speed and size.
-- Maintain a single source of truth for class labels and ensure label order consistency between training and mobile.
-- Add on-device caching of predictions and offline-first behavior for telehealth handoffs.
-- For OEM integration (e.g., Samsung), consider a system app/service module with:
-   - background microphone permission flows vetted by OEM
-   - neural acceleration via NNAPI/GPU delegates
-   - modular “emergency pack” updates via Play System Updates or OEM store
-
-## Troubleshooting
-
-- App runs but “models missing”: check `app/src/main/assets/models/` and filenames.
-- TFLite conversion mismatches: ensure input shapes match (224x224x3 for images; max seq len for text). Check normalization steps.
-- Large APK: use aab splits and keep models quantized.
-
-## Security and privacy
-
-- No PHI is logged. Avoid sending data to servers by default.
-- Add Data Safety section before publishing. Consider on-device encryption for cached data.
-
-## License and datasets
-
-Use only datasets you have rights to. Respect dataset licenses for any public sources.
-
-# Emergency Triage App# Emergency Triage App# 🏥 Emergency AI Triage App
-
-
-
-## Overview
-
-
-The Emergency AI Triage App is a cutting-edge Android application that combines voice recognition, image analysis, and text processing to provide intelligent medical triage decisions. Using on-device machine learning, the app classifies medical emergencies and provides urgency flags with recommended actions.
-
-
-### Key Features**A Complete Multimodal AI-Powered Emergency Medical Triage System for Android**
-
-
-
-| Feature | Description |> **A Complete Multimodal AI-Powered Emergency Medical Triage System for Android**
-
-|---------|-------------|
-
-| **Voice-to-Text** | Record symptoms using Android's SpeechRecognizer |## Overview
-
-| **Image Classification** | AI-powered skin disease detection using CNN |
-
-| **Multimodal Fusion** | Combines image and text analysis for comprehensive triage |## 🎯 Overview
-
-| **Urgency Classification** | Green / Yellow / Red urgency levels |
-
-| **Disease Precautions** | Automated precaution recommendations |The Emergency AI Triage App is a cutting-edge Android application that combines voice recognition, image analysis, and text processing to provide intelligent medical triage decisions. Using on-device machine learning, the app classifies medical emergencies and provides urgency flags with recommended actions.
-
-| **Telehealth Integration** | Direct connection to telehealth services |
-
-| **Offline-First** | All AI processing happens on-device using TensorFlow Lite |The Emergency AI Triage App is a cutting-edge Android application that combines **voice recognition**, **image analysis**, and **text processing** to provide intelligent medical triage decisions. Using on-device machine learning, the app classifies medical emergencies and provides urgency flags with recommended actions.
-
-
-
-## App Interface### Key Features
-
-
-
-```### ✨ Key Features
-
-[Main Screen]     [Recording]      [Analysis]       [Results]
-
-┌─────────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐| Feature | Description |
-
-│  Record     │   │  Speaking   │   │  Analyzing  │   │  URGENT     │
-
-│  Capture    │   │ "I have..." │   │   Please    │   │ Skin Cancer │|---------|-------------|| Feature | Description |
-
-│  Gallery    │   │             │   │   wait...   │   │ 92% Conf.   │
-
-│             │   │  Stop       │   │             │   │  Actions    │| **Voice-to-Text** | Record symptoms using Android's SpeechRecognizer ||---------|-------------|
-
-│  Analyze    │   │             │   │             │   │  Call Dr    │
-
-└─────────────┘   └─────────────┘   └─────────────┘   └─────────────┘| **Image Classification** | AI-powered skin disease detection using CNN || 🎤 **Voice-to-Text** | Record symptoms using Android's SpeechRecognizer |
-
-```
-
-| **Multimodal Fusion** | Combines image and text analysis for comprehensive triage || 📸 **Image Classification** | AI-powered skin disease detection using CNN |
-
-## Project Structure
-
-| **Urgency Classification** | Green / Yellow / Red urgency levels || 🧠 **Multimodal Fusion** | Combines image and text analysis for comprehensive triage |
-
-```
-
-EmergencyTriageApp/| **Disease Precautions** | Automated precaution recommendations || 🚨 **Urgency Classification** | 🟢 Green / 🟡 Yellow / 🔴 Red urgency levels |
-
-├── app/                           # Android application module
-
-│   ├── src/main/| **Telehealth Integration** | Direct connection to telehealth services || 💊 **Disease Precautions** | Automated precaution recommendations |
-
-│   │   ├── java/com/example/emergencytriage/
-
-│   │   │   ├── MainActivity.kt    # Main app entry point| **Offline-First** | All AI processing happens on-device using TensorFlow Lite || 🏥 **Telehealth Integration** | Direct connection to telehealth services |
-
-│   │   │   ├── ui/screens/        # UI components
-
-│   │   │   ├── ml/                # Machine learning processors| 📱 **Offline-First** | All AI processing happens on-device using TensorFlow Lite |
-
-│   │   │   ├── data/models/       # Data classes and models
-
-│   │   │   └── utils/             # Utility classes## App Interface
-
-│   │   ├── assets/                # TensorFlow Lite models & resources
-
-│   │   └── res/                   # Android resources (layouts, icons, etc.)## 📱 App Screenshots
-
-│   │       └── mipmap-*/          # App icons (multiple resolutions)
-
-│   └── build.gradle               # App-level build configuration```
-
-├── ml/                            # Python ML training scripts
-
-│   ├── train_image_model.py       # CNN training for skin diseases[Main Screen]     [Recording]      [Analysis]       [Results]```
-
-│   ├── train_text_model.py        # Text classifier for symptom severity
-
-│   ├── convert_image_to_tflite.py # Image model conversion utilities┌─────────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐[Main Screen]     [Recording]      [Analysis]       [Results]
-
-│   └── convert_text_to_tflite.py  # Text model conversion utilities
-
-├── datasets/                      # Medical datasets and training data│  Record     │   │  Speaking   │   │  Analyzing  │   │  URGENT     │┌─────────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-
-│   ├── DiseaseAndSymptoms.csv     # Disease-symptom mappings with severity
-
-│   ├── DiseasePrecaution.csv      # Disease-precaution recommendations│  Capture    │   │ "I have..." │   │   Please    │   │ Skin Cancer ││  🎤 Record  │   │ 🔴 Speaking │   │ ⏳ Analyzing│   │ 🔴 URGENT   │
-
-│   └── SkinDisease/               # Image classification dataset (samples)
-
-├── models/                        # Pre-trained model files│  Gallery    │   │             │   │   wait...   │   │ 92% Conf.   ││  📸 Capture │   │ "I have..." │   │   Please    │   │ Skin Cancer │
-
-├── docs/                          # Documentation and architecture diagrams
-
-├── build.gradle                   # Project-level build configuration│             │   │  Stop       │   │             │   │  Actions    ││  🖼️ Gallery  │   │             │   │   wait...   │   │ 92% Conf.   │
-
-├── requirements.txt               # Python dependencies for ML training
-
-└── README.md                      # This file│  Analyze    │   │             │   │             │   │  Call Dr    ││             │   │ 🔇 Stop     │   │             │   │ 📋 Actions  │
-
-```
-
-└─────────────┘   └─────────────┘   └─────────────┘   └─────────────┘│ 🔍 Analyze  │   │             │   │             │   │ 🏥 Call Dr  │
-
-## AI/ML Pipeline
-
-```└─────────────┘   └─────────────┘   └─────────────┘   └─────────────┘
-
-### 1. Image Classification (Skin Disease Detection)
-
-- **Model**: EfficientNetB0 + Custom CNN layers```
-
-- **Input**: 224×224 RGB images
-
-- **Output**: 22 skin disease categories with confidence scores## Project Structure
-
-- **Classes**: Acne, Skin Cancer, Eczema, Psoriasis, Melanoma, etc.
-
-- **Accuracy Target**: >85% on test set## 🏗️ Project Structure
-
-
-
-### 2. Text Classification (Symptom Severity)```
-
-- **Model**: LSTM + Dense layers OR DistilBERT
-
-- **Input**: Tokenized symptom descriptions (max 128 tokens)EmergencyTriageApp/```
-
-- **Output**: Severity levels (Mild, Moderate, Severe)
-
-- **Features**: Rule-based + ML-based classification├── app/                           # Android application moduleEmergencyTriageApp/
-
-
-
-### 3. Multimodal Fusion Engine│   ├── src/main/├── 📁 app/                        # Android application module
-
-- **Approach**: Weighted fusion of image and text predictions
-
-- **Weights**: Image (70%) + Text (30%)│   │   ├── java/com/example/emergencytriage/│   ├── src/main/
-
-- **Output**: Final urgency level (Green/Yellow/Red)
-
-- **Decision Logic**: Conservative approach (takes higher urgency)│   │   │   ├── MainActivity.kt    # Main app entry point│   │   ├── java/com/example/emergencytriage/
-
-
-
-## Quick Start Guide│   │   │   ├── ui/screens/        # UI components│   │   │   ├── MainActivity.kt    # Main app entry point
-
-
-
-### Prerequisites│   │   │   ├── ml/                # Machine learning processors│   │   │   ├── ui/screens/        # UI components
-
-
-
-| Requirement | Version | Purpose |│   │   │   ├── data/models/       # Data classes and models│   │   │   ├── ml/                # Machine learning processors
-
-|-------------|---------|---------|
-
-| **Android Studio** | Arctic Fox+ | Android development |│   │   │   └── utils/             # Utility classes│   │   │   ├── data/models/       # Data classes and models
-
-| **Kotlin** | 1.5.0+ | App programming language |
-
-| **Android SDK** | API Level 21+ | Android 5.0+ support |│   │   ├── assets/                # TensorFlow Lite models & resources│   │   │   └── utils/             # Utility classes
-
-| **Python** | 3.8+ | ML training (optional) |
-
-| **TensorFlow** | 2.8+ | ML training (optional) |│   │   └── res/                   # Android resources (layouts, icons, etc.)│   │   ├── assets/                # TensorFlow Lite models & resources
-
-| **Device RAM** | 4GB+ | Smooth app performance |
-
-│   │       └── mipmap-*/          # App icons (multiple resolutions)│   │   └── res/                   # Android resources (layouts, icons, etc.)
-
-### Installation Steps
-
-│   └── build.gradle               # App-level build configuration│   │       └── mipmap-*/          # App icons (multiple resolutions)
-
-#### Step 1: Clone the Repository
-
-```bash├── ml/                            # Python ML training scripts│   └── build.gradle               # App-level build configuration
-
-git clone https://github.com/Arjjun-S/EmergencyTriageApp.git
-
-cd EmergencyTriageApp│   ├── train_image_model.py       # CNN training for skin diseases├── 📁 ml/                         # Python ML training scripts
-
-```
-
-│   ├── train_text_model.py        # Text classifier for symptom severity│   ├── train_image_model.py       # CNN training for skin diseases
-
-#### Step 2: Open in Android Studio
-
-1. Launch Android Studio│   ├── convert_image_to_tflite.py # Image model conversion utilities│   ├── train_text_model.py        # Text classifier for symptom severity
-
-2. Click "Open an existing Android Studio project"
-
-3. Navigate to the `EmergencyTriageApp` folder and select it│   └── convert_text_to_tflite.py  # Text model conversion utilities│   ├── convert_image_to_tflite.py # Image model conversion utilities
-
-4. Wait for Gradle sync to complete
-
-├── datasets/                      # Medical datasets and training data│   └── convert_text_to_tflite.py  # Text model conversion utilities
-
-#### Step 3: Add App Icon (Optional)
-
-**Create a Professional App Icon:**│   ├── DiseaseAndSymptoms.csv     # Disease-symptom mappings with severity├── 📁 datasets/                   # Medical datasets and training data
-
-
-
-Your app needs an icon to look professional on users' devices. The folder structure is ready:│   ├── DiseasePrecaution.csv      # Disease-precaution recommendations│   ├── DiseaseAndSymptoms.csv     # Disease-symptom mappings with severity
-
-
-
-```│   └── SkinDisease/               # Image classification dataset (samples)│   ├── DiseasePrecaution.csv      # Disease-precaution recommendations
-
-app/src/main/res/
-
-├── mipmap-mdpi/     → ic_launcher.png (48×48 px)├── models/                        # Pre-trained model files│   └── SkinDisease/               # Image classification dataset (samples)
-
-├── mipmap-hdpi/     → ic_launcher.png (72×72 px)  
-
-├── mipmap-xhdpi/    → ic_launcher.png (96×96 px)├── docs/                          # Documentation and architecture diagrams├── 📁 models/                     # Pre-trained model files
-
-├── mipmap-xxhdpi/   → ic_launcher.png (144×144 px)
-
-└── mipmap-xxxhdpi/  → ic_launcher.png (192×192 px)├── build.gradle                   # Project-level build configuration├── 📁 docs/                       # Documentation and architecture diagrams
-
-```
-
-├── requirements.txt               # Python dependencies for ML training├── � build.gradle                # Project-level build configuration
-
-**Quick Icon Creation:**
-
-1. **Use Android Asset Studio** (Recommended): https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html└── README.md                      # This file├── 📄 requirements.txt            # Python dependencies for ML training
-
-2. **Upload a 512×512** base design (medical theme: red cross, stethoscope, etc.)
-
-3. **Download all sizes** and place them in the respective mipmap folders```└── 📄 README.md                   # This file
-
-4. **Name each file**: `ic_launcher.png`
-
-```
-
-**Icon Ideas:** Medical cross + AI circuit, stethoscope + phone, emergency star + mobile device
-
-## AI/ML Pipeline
-
-*See detailed guide: [`docs/APP_ICON_GUIDE.md`](docs/APP_ICON_GUIDE.md)*
-
-## 🤖 AI/ML Pipeline
-
-#### Step 4: Build and Run
-
-1. Connect an Android device (API 21+) or start an emulator### 1. Image Classification (Skin Disease Detection)
-
-2. Click the "Run" button in Android Studio
-
-3. Select your target device- **Model**: EfficientNetB0 + Custom CNN layers### 1. **Image Classification (Skin Disease Detection)**
-
-4. The app will install and launch automatically
-
-- **Input**: 224×224 RGB images- **Model**: EfficientNetB0 + Custom CNN layers
-
-## Dataset Setup for High-Accuracy Model Training
-
-- **Output**: 22 skin disease categories with confidence scores- **Input**: 224×224 RGB images
-
-The repository includes only sample data for demonstration purposes. To train high-accuracy custom models, you need to download complete datasets.
-
-- **Classes**: Acne, Skin Cancer, Eczema, Psoriasis, Melanoma, etc.- **Output**: 22 skin disease categories with confidence scores
-
-### Current Sample Data
-
-- **Disease Symptoms**: 40+ diseases with symptom mappings- **Accuracy Target**: >85% on test set- **Classes**: Acne, Skin Cancer, Eczema, Psoriasis, Melanoma, etc.
-
-- **Precautions**: Disease-specific precautionary measures
-
-- **Skin Images**: 2 sample images from HAM10000 dataset- **Accuracy Target**: >85% on test set
-
-
-
-### Download Complete Datasets for Production Models### 2. Text Classification (Symptom Severity)
-
-
-
-#### 1. HAM10000 Skin Lesion Dataset (Recommended)- **Model**: LSTM + Dense layers OR DistilBERT### 2. **Text Classification (Symptom Severity)**
-
-**For high-accuracy skin disease detection:**
-
-- **Input**: Tokenized symptom descriptions (max 128 tokens)- **Model**: LSTM + Dense layers OR DistilBERT
-
-- **Source**: Harvard Dataverse
-
-- **URL**: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T- **Output**: Severity levels (Mild, Moderate, Severe)- **Input**: Tokenized symptom descriptions (max 128 tokens)
-
-- **Size**: ~10,000 dermatoscopic images
-
-- **Classes**: 7 skin lesion types- **Features**: Rule-based + ML-based classification- **Output**: Severity levels (Mild, Moderate, Severe)
-
-- **Format**: JPEG images with metadata
-
-- **Features**: Rule-based + ML-based classification
-
-**Download Steps:**
-
-1. Visit the Harvard Dataverse link above### 3. Multimodal Fusion Engine
-
-2. Download `HAM10000_images_part_1.zip` (5.5 GB)
-
-3. Download `HAM10000_images_part_2.zip` (5.0 GB)- **Approach**: Weighted fusion of image and text predictions### 3. **Multimodal Fusion Engine**
-
-4. Download `HAM10000_metadata.csv`
-
-5. Extract images to:- **Weights**: Image (70%) + Text (30%)- **Approach**: Weighted fusion of image and text predictions
-
-   ```
-
-   datasets/SkinDisease/HAM10000_images_part_1/- **Output**: Final urgency level (Green/Yellow/Red)- **Weights**: Image (70%) + Text (30%)
-
-   datasets/SkinDisease/HAM10000_images_part_2/
-
-   ```- **Decision Logic**: Conservative approach (takes higher urgency)- **Output**: Final urgency level (Green/Yellow/Red)
-
-
-
-#### 2. Alternative Datasets for Enhanced Training- **Decision Logic**: Conservative approach (takes higher urgency)
-
-
-
-**ISIC 2019 Challenge Dataset:**## Quick Start Guide
-
-- **URL**: https://challenge.isic-archive.com/data/
-
-- **Size**: 25,331 images## � Quick Start Guide
-
-- **Classes**: 8 diagnostic categories
-
-- **Use Case**: More diverse skin lesion types### Prerequisites
-
-
-
-**DermNet Dataset:**### Prerequisites
-
-- **URL**: http://www.dermnet.com/
-
-- **Size**: 23,000+ images| Requirement | Version | Purpose |
-
-- **Classes**: 23 skin condition classes
-
-- **Use Case**: Broader skin condition coverage|-------------|---------|---------|| Requirement | Version | Purpose |
-
-
-
-**PH2 Dataset:**| **Android Studio** | Arctic Fox+ | Android development ||-------------|---------|---------|
-
-- **URL**: https://www.fc.up.pt/addi/ph2%20database.html
-
-- **Size**: 200 dermoscopic images| **Kotlin** | 1.5.0+ | App programming language || **Android Studio** | Arctic Fox+ | Android development |
-
-- **Use Case**: Melanoma detection focus
-
-| **Android SDK** | API Level 21+ | Android 5.0+ support || **Kotlin** | 1.5.0+ | App programming language |
-
-### Training Setup with Complete Datasets
-
-| **Python** | 3.8+ | ML training (optional) || **Android SDK** | API Level 21+ | Android 5.0+ support |
-
-#### Step 1: Python Environment Setup
-
-```bash| **TensorFlow** | 2.8+ | ML training (optional) || **Python** | 3.8+ | ML training (optional) |
-# Emergency Triage App
-
-**A Multimodal AI-Powered Emergency Medical Triage System for Android**
-
-## Overview
-
-The Emergency Triage App combines voice input, image analysis, and structured symptom text to assist with preliminary medical triage. All inference runs on-device using TensorFlow Lite for privacy and low-latency operation. The system produces an urgency level (Green / Yellow / Red) and suggested next-step actions.
-
-## Key Features
-
-| Feature | Description |
-|---------|-------------|
-| Voice-to-Text | Capture spoken symptoms via Android speech recognition |
-| Image Classification | Skin condition analysis using a CNN model |
-| Multimodal Fusion | Weighted combination of image + text model outputs |
-| Urgency Classification | Three-tier urgency result (Green / Yellow / Red) |
-| Precaution Lookup | Maps predicted condition to precaution suggestions |
-| Telehealth Hook | Placeholder for integration with remote care services |
-| Offline Execution | All ML inference happens fully on-device |
-
-## Project Structure
-
-```
-EmergencyTriageApp/
-├── app/
-│   ├── src/main/
-│   │   ├── java/com/example/emergencytriage/
-│   │   │   ├── MainActivity.kt
-│   │   │   ├── ui/screens/
-│   │   │   ├── ml/
-│   │   │   ├── data/models/
-│   │   │   └── utils/
-│   │   ├── assets/               # TFLite models & label files
-│   │   └── res/                  # Layouts, drawables, mipmap icons
-│   └── build.gradle
-├── ml/                           # Python model training & conversion
-│   ├── train_image_model.py
-│   ├── train_text_model.py
-│   ├── convert_image_to_tflite.py
-│   └── convert_text_to_tflite.py
-├── datasets/                     # Sample CSVs + sample images
-│   ├── DiseaseAndSymptoms.csv
-│   ├── DiseasePrecaution.csv
-│   └── SkinDisease/
-├── models/                       # (Optional) exported .h5 or .tflite
-├── docs/                         # Additional documentation
-├── requirements.txt              # Python dependencies
-└── README.md
-```
-
-## ML Pipeline Summary
-
-### 1. Image Model
-- Architecture: EfficientNetB0 (base) + custom dense head
-- Input: 224x224 RGB
-- Output: Condition class probabilities
-- Goal Accuracy: >85% with full dataset
-
-### 2. Text Model
-- Architecture: LSTM (or optional transformer) over tokenized symptom text
-- Output: Severity / condition category probability distribution
-
-### 3. Fusion
-- Weighted blend (default Image 0.7, Text 0.3)
-- Produces final urgency level + top condition
-
-## Quick Start (App)
-
-1. Install / open Android Studio (Arctic Fox or later)
-2. Clone repository:
-    ```bash
-    git clone https://github.com/Arjjun-S/EmergencyTriageApp.git
-    cd EmergencyTriageApp
-    ```
-3. Open the project root in Android Studio
-4. Let Gradle sync finish
-5. (Optional) Add launcher icons (see below)
-6. Run on a device/emulator (API 21+)
-
-## Launcher Icon (Optional)
-
-Place appropriately sized `ic_launcher.png` files in:
-```
-app/src/main/res/
-   mipmap-mdpi/
-   mipmap-hdpi/
-   mipmap-xhdpi/
-   mipmap-xxhdpi/
-   mipmap-xxxhdpi/
-```
-Use Android Asset Studio to generate sizes from a 512x512 base graphic.
-
-## High-Accuracy Model Training
-
-The repository only includes minimal sample data. For production-quality accuracy you must download full datasets.
-
-### Recommended Skin Dataset (HAM10000)
-Source: Harvard Dataverse  
-URL: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T
-
-Download:
-1. `HAM10000_images_part_1.zip`
-2. `HAM10000_images_part_2.zip`
-3. `HAM10000_metadata.csv`
-
-Extract into:
-```
-datasets/SkinDisease/HAM10000_images_part_1/
-datasets/SkinDisease/HAM10000_images_part_2/
-datasets/SkinDisease/HAM10000_metadata.csv
-```
-
-### Alternative Datasets
-- ISIC 2019 Challenge: https://challenge.isic-archive.com/data/
-- DermNet: http://www.dermnet.com/
-- PH2 (melanoma focus): https://www.fc.up.pt/addi/ph2%20database.html
-
-### Python Environment Setup
-```bash
-python -m venv venv
-venv\Scripts\activate   # Windows
-# source venv/bin/activate  # macOS/Linux
-pip install -r requirements.txt
-```
-
-### Training Commands
-```bash
-cd ml
-python train_image_model.py
-python train_text_model.py
-python convert_image_to_tflite.py
-python convert_text_to_tflite.py
-```
-
-### Expected (Full Dataset) Performance
-- Image classification: 85–92% accuracy
-- Text classification: 88–95% accuracy
-- Training time: GPU 2–4h, CPU 8–12h
-
-## Using the App (Workflow)
-1. Launch app and grant Camera / Microphone permissions
-2. (Optional) Capture or select a skin image
-3. Press record to dictate symptoms, then stop
-4. Tap analyze to run multimodal inference
-5. Review urgency, top condition, and precaution suggestions
-
-## Configuration Reference
-- Min SDK: 21
-- Target SDK: 34
-- Permissions: CAMERA, RECORD_AUDIO, INTERNET
-- Image input size: 224x224
-- Default batch size (training): 32
-
-## Troubleshooting
-| Issue | Resolution |
-|-------|-----------|
-| App crash on launch | Verify permissions granted in system settings |
-| Model not found | Confirm TFLite files exist under `app/src/main/assets/models` |
-| Poor image results | Use clear, well-lit, centered images; expand training data |
-| Speech not captured | Check microphone permission and retry in quiet area |
-| Build failure | Clean/Rebuild project; ensure Gradle sync completed |
-
-## Contributing
-Suggestions / PRs welcome (UI polish, model improvements, accessibility, localization).
-
-## Support
-- Issues: https://github.com/Arjjun-S/EmergencyTriageApp/issues
-- Discussions: (enable in GitHub repository settings if needed)
+Notes
+- For a lighter text model suitable for mobile, set `model_type` to `simple_nn` or `lstm` in `train_text_model.py`.
+- The converters already enable quantization to reduce model size.
 
 ---
-Medical Disclaimer: This application provides informational triage assistance only and is not a substitute for professional medical advice, diagnosis, or treatment.
 
-**Medical Disclaimer**: This app is for informational purposes only and should not replace professional medical advice. Always consult healthcare professionals for medical emergencies.
+## 9) AI/ML Pipeline and How It Works
+
+Image Classification (Skin Disease)
+- Architecture: EfficientNetB0 base + custom dense head
+- Input: 224×224 RGB images
+- Output: class probabilities for skin conditions
+
+Text Classification (Symptom Severity)
+- Options: simple NN, LSTM, or DistilBERT
+- Input: tokenized symptom descriptions (max ~128 tokens)
+- Output: severity/condition probabilities
+
+Multimodal Fusion
+- Fusion: weighted average (default Image 0.7, Text 0.3)
+- Urgency logic: conservative mapping to Green/Yellow/Red with precautions
+
+On-Device Inference
+- Entire inference pipeline runs via TFLite; telehealth is optional.
+
+Expected (with full datasets; indicative)
+- Image: ~85–92% accuracy
+- Text: ~88–95% accuracy
+
+---
+
+## 10) Configuration (Android + ML)
+
+Android app
+- Min SDK: 26 (Android 8.0) or as configured in `build.gradle`
+- Target SDK: 34
+- Permissions: CAMERA, RECORD_AUDIO, INTERNET (for telehealth links)
+
+Training defaults
+- Image size: 224×224×3
+- Batch size: 32
+- Epochs: 50–100
+- Optimizer: Adam (0.001)
+
+---
+
+## 11) Performance and Optimizations
+
+- Quantize models (float16/int8) for better speed/size
+- Use NNAPI or GPU delegate if available on device
+- Keep input images clear, centered, and well-lit to improve accuracy
+- Ensure label order matches between training and mobile
+
+---
+
+## 12) Troubleshooting
+
+| Issue | Resolution |
+|------|------------|
+| “Models missing” banner | Confirm files under `app/src/main/assets/models/` |
+| Build errors | Let Gradle sync; Build > Clean Project; restart Android Studio |
+| Poor image results | Improve lighting/quality, expand training data |
+| Speech not captured | Check microphone permission; try in quiet area |
+
+---
+
+## 13) Testing
+
+Android tests
+```powershell
+./gradlew test
+./gradlew connectedAndroidTest
+```
+
+ML tests (optional, if you add Python tests)
+```powershell
+cd ml
+python -m pytest tests/
+```
+
+---
+
+## 14) Make the Repository Public
+
+If this repository is not public:
+1. Open the GitHub repo page
+2. Settings → General → Danger Zone
+3. “Change repository visibility” → Public
+
+---
+
+## 15) License, Ethics, and Data
+
+- Use only datasets you have rights to and respect their licenses
+- Do not log PHI; keep data local and private by default
+
+---
+
+## 16) Acknowledgments and Support
+
+Acknowledgments
+- HAM10000 Dataset (Harvard Dataverse)
+- TensorFlow / Android teams for on-device ML and Speech APIs
+- Medical advisors for domain guidance
+
+Support
+- Issues: https://github.com/Arjjun-S/EmergencyTriageApp/issues
+- Discussions: https://github.com/Arjjun-S/EmergencyTriageApp/discussions
+
+---
+
+## 17) Medical Disclaimer
+
+This app provides informational triage assistance only and does not replace professional medical advice, diagnosis, or treatment. For emergencies, call your local emergency number immediately.
+
    datasets/SkinDisease/HAM10000_images_part_2/
 
    ```#### **Step 3: Train Models**
