@@ -18,9 +18,9 @@ class SpeechNLPProcessor(private val context: Context) {
     
     companion object {
         private const val TAG = "SpeechNLPProcessor"
-        private const val MODEL_FILE = "text_classifier.tflite"
-        private const val LABELS_FILE = "text_classifier_labels.txt"
-        private const val VOCAB_FILE = "vocab.txt"
+        private const val MODEL_FILE = "models/text_classifier.tflite"
+        private const val LABELS_FILE = "models/text_classifier_labels.txt"
+        private const val VOCAB_FILE = "models/vocab.txt"
         private const val MAX_SEQUENCE_LENGTH = 128
         private const val OOV_TOKEN = "<OOV>"
         private const val PAD_TOKEN = "<PAD>"

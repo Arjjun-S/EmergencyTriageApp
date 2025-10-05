@@ -1,0 +1,5 @@
+Acne
+Actinic_Keratosis
+Benign_tumors
+Bullous
+Candidiasis

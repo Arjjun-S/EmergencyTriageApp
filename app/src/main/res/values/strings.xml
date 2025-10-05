@@ -9,6 +9,7 @@
     <string name="analyze">Analyze</string>
     <string name="transcribed_text">Transcribed text will appear here</string>
     <string name="status_ready">Ready - Select image and record symptoms</string>
+    <string name="status_models_missing">Models missing (fallback active). You can still test the flow.</string>
     
     <!-- Result Screen -->
     <string name="predicted_disease">Predicted Disease:</string>

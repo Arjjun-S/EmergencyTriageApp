@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="background_card">#FFFFFF</color>
+    <color name="background_primary">#FFFFFF</color>
+    <color name="background_secondary">#F7FAFC</color>
+    <color name="black">#000000</color>
+    <color name="blue_600">#3182CE</color>
+    <color name="blue_700">#2C5282</color>
+    <color name="error">#E53E3E</color>
+    <color name="gray_100">#F7FAFC</color>
+    <color name="gray_200">#EDF2F7</color>
+    <color name="gray_300">#E2E8F0</color>
+    <color name="gray_400">#CBD5E0</color>
+    <color name="gray_500">#A0AEC0</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="info">#3182CE</color>
+    <color name="red_600">#E53E3E</color>
+    <color name="red_700">#C53030</color>
+    <color name="red_800">#9B2C2C</color>
+    <color name="success">#38A169</color>
+    <color name="text_muted">#A0AEC0</color>
+    <color name="text_primary">#1A202C</color>
+    <color name="text_secondary">#4A5568</color>
+    <color name="urgency_green">#38A169</color>
+    <color name="urgency_green_light">#C6F6D5</color>
+    <color name="urgency_red">#E53E3E</color>
+    <color name="urgency_red_light">#FEB2B2</color>
+    <color name="urgency_yellow">#F6AD55</color>
+    <color name="urgency_yellow_light">#FED7AA</color>
+    <color name="warning">#F6AD55</color>
+    <color name="white">#FFFFFF</color>
+    <string name="analyze">Analyze</string>
+    <string name="app_name">Emergency Triage</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="back_to_results">Back to Results</string>
+    <string name="call_doctor">Call Doctor</string>
+    <string name="capture_image">Capture Image</string>
+    <string name="confidence_level">Confidence Level:</string>
+    <string name="connect_amwell">Connect to Amwell</string>
+    <string name="connect_doctor_on_demand">Connect to Doctor on Demand</string>
+    <string name="connect_mdlive">Connect to MDLive</string>
+    <string name="connect_teladoc">Connect to Teladoc</string>
+    <string name="emergency_call">Emergency Call 911</string>
+    <string name="error_analysis_failed">Analysis failed. Please try again.</string>
+    <string name="error_image_processing">Error processing image</string>
+    <string name="error_model_loading">Error loading AI models</string>
+    <string name="error_no_camera">Camera not available</string>
+    <string name="error_no_microphone">Microphone not available</string>
+    <string name="error_speech_recognition">Speech recognition failed</string>
+    <string name="medical_disclaimer">MEDICAL DISCLAIMER: This app provides guidance only and is not a substitute for professional medical advice. In emergencies, call 911 immediately.</string>
+    <string name="permission_audio_rationale">Microphone permission is required to record symptom descriptions</string>
+    <string name="permission_camera_rationale">Camera permission is required to capture images for analysis</string>
+    <string name="permission_phone_rationale">Phone permission is required for emergency calling functionality</string>
+    <string name="permission_storage_rationale">Storage permission is required to access images from gallery</string>
+    <string name="precautions">Precautions:</string>
+    <string name="predicted_disease">Predicted Disease:</string>
+    <string name="select_image">Select Image</string>
+    <string name="start_recording">Start Recording</string>
+    <string name="status_analyzing">Analyzing... Please wait</string>
+    <string name="status_complete">Analysis complete</string>
+    <string name="status_listening">Listening... Describe your symptoms</string>
+    <string name="status_models_missing">Models missing (fallback active). You can still test the flow.</string>
+    <string name="status_processing">Processing... Please wait</string>
+    <string name="status_ready">Ready - Select image and record symptoms</string>
+    <string name="stop_recording">Stop Recording</string>
+    <string name="symptoms">Symptoms:</string>
+    <string name="telehealth">Telehealth</string>
+    <string name="telehealth_description">Based on your triage results, you can connect with licensed healthcare professionals through these telehealth services for immediate consultation and guidance.</string>
+    <string name="telehealth_title">Connect with Healthcare Professionals</string>
+    <string name="transcribed_text">Transcribed text will appear here</string>
+    <string name="urgency_high">HIGH PRIORITY</string>
+    <string name="urgency_high_desc">Seek immediate medical attention</string>
+    <string name="urgency_level">Urgency Level:</string>
+    <string name="urgency_low">LOW PRIORITY</string>
+    <string name="urgency_low_desc">Monitor symptoms and seek routine care</string>
+    <string name="urgency_moderate">MODERATE PRIORITY</string>
+    <string name="urgency_moderate_desc">Seek medical attention within 24-48 hours</string>
+    <style name="BodyText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+    <style name="EmergencyButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="backgroundTint">@color/red_800</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="PrimaryButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="backgroundTint">@color/red_600</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="ResultCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="contentPadding">16dp</item>
+    </style>
+    <style name="SecondaryButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="strokeColor">@color/blue_600</item>
+        <item name="android:textColor">@color/blue_600</item>
+    </style>
+    <style name="StatusText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:padding">8dp</item>
+    </style>
+    <style name="SubtitleText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+    <style name="Theme.EmergencyTriage" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        
+        <item name="colorPrimary">@color/red_600</item>
+        <item name="colorPrimaryVariant">@color/red_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/blue_600</item>
+        <item name="colorSecondaryVariant">@color/blue_700</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
+        
+    </style>
+    <style name="TitleText">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+</resources>

@@ -1,0 +1,609 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.emergencytriage"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="34" />
+10
+11    <!-- Required permissions for emergency triage functionality -->
+12    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+12-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:6:5-71
+12-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:6:22-68
+13    <uses-permission android:name="android.permission.CAMERA" />
+13-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:7:5-65
+13-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:7:22-62
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:8:5-80
+14-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:8:22-77
+15    <uses-permission
+15-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:9:5-10:38
+16        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+16-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:9:22-78
+17        android:maxSdkVersion="28" />
+17-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:10:9-35
+18    <uses-permission android:name="android.permission.CALL_PHONE" />
+18-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:11:5-69
+18-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:11:22-66
+19    <uses-permission android:name="android.permission.INTERNET" />
+19-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:12:5-67
+19-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:12:22-64
+20    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+20-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:13:5-79
+20-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:13:22-76
+21
+22    <!-- Camera feature declaration -->
+23    <uses-feature
+23-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:16:5-18:35
+24        android:name="android.hardware.camera"
+24-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:17:9-47
+25        android:required="true" />
+25-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:18:9-32
+26    <uses-feature
+26-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:19:5-21:36
+27        android:name="android.hardware.camera.autofocus"
+27-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:20:9-57
+28        android:required="false" />
+28-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:21:9-33
+29
+30    <!-- Microphone feature declaration -->
+31    <uses-feature
+31-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:24:5-26:35
+32        android:name="android.hardware.microphone"
+32-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:25:9-51
+33        android:required="true" />
+33-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:26:9-32
+34
+35    <uses-permission android:name="android.permission.USE_BIOMETRIC" /> <!-- suppress DeprecatedClassUsageInspection -->
+35-->[androidx.biometric:biometric:1.1.0] C:\Users\Pranav\.gradle\caches\transforms-3\e2f33fb345b1fa59ca4c1282b0582e42\transformed\biometric-1.1.0\AndroidManifest.xml:24:5-72
+35-->[androidx.biometric:biometric:1.1.0] C:\Users\Pranav\.gradle\caches\transforms-3\e2f33fb345b1fa59ca4c1282b0582e42\transformed\biometric-1.1.0\AndroidManifest.xml:24:22-69
+36    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+36-->[androidx.biometric:biometric:1.1.0] C:\Users\Pranav\.gradle\caches\transforms-3\e2f33fb345b1fa59ca4c1282b0582e42\transformed\biometric-1.1.0\AndroidManifest.xml:27:5-74
+36-->[androidx.biometric:biometric:1.1.0] C:\Users\Pranav\.gradle\caches\transforms-3\e2f33fb345b1fa59ca4c1282b0582e42\transformed\biometric-1.1.0\AndroidManifest.xml:27:22-71
+37    <uses-permission android:name="android.permission.WAKE_LOCK" />
+37-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:23:5-68
+37-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:23:22-65
+38    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+38-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:25:5-81
+38-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:25:22-78
+39    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+39-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:26:5-77
+39-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:26:22-74
+40
+41    <permission
+41-->[androidx.core:core:1.12.0] C:\Users\Pranav\.gradle\caches\transforms-3\76a6da438bb2575f840289c110adfe9d\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+42        android:name="com.example.emergencytriage.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+42-->[androidx.core:core:1.12.0] C:\Users\Pranav\.gradle\caches\transforms-3\76a6da438bb2575f840289c110adfe9d\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+43        android:protectionLevel="signature" />
+43-->[androidx.core:core:1.12.0] C:\Users\Pranav\.gradle\caches\transforms-3\76a6da438bb2575f840289c110adfe9d\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+44
+45    <uses-permission android:name="com.example.emergencytriage.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- To allow posting notifications on Android 13 -->
+45-->[androidx.core:core:1.12.0] C:\Users\Pranav\.gradle\caches\transforms-3\76a6da438bb2575f840289c110adfe9d\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+45-->[androidx.core:core:1.12.0] C:\Users\Pranav\.gradle\caches\transforms-3\76a6da438bb2575f840289c110adfe9d\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+46    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+46-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:29:5-77
+46-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:29:22-74
+47
+48    <application
+48-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:28:5-77:19
+49        android:allowBackup="true"
+49-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:29:9-35
+50        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+50-->[androidx.core:core:1.12.0] C:\Users\Pranav\.gradle\caches\transforms-3\76a6da438bb2575f840289c110adfe9d\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+51        android:dataExtractionRules="@xml/data_extraction_rules"
+51-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:30:9-65
+52        android:debuggable="true"
+53        android:extractNativeLibs="true"
+54        android:fullBackupContent="@xml/backup_rules"
+54-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:31:9-54
+55        android:hardwareAccelerated="true"
+55-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:37:9-43
+56        android:icon="@mipmap/ic_launcher"
+56-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:32:9-43
+57        android:label="@string/app_name"
+57-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:33:9-41
+58        android:roundIcon="@mipmap/ic_launcher_round"
+58-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:34:9-54
+59        android:supportsRtl="true"
+59-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:35:9-35
+60        android:testOnly="true"
+61        android:theme="@style/Theme.EmergencyTriage" >
+61-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:36:9-53
+62
+63        <!-- Main Activity -->
+64        <activity
+64-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:41:9-50:20
+65            android:name="com.example.emergencytriage.MainActivity"
+65-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:42:13-41
+66            android:exported="true"
+66-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:43:13-36
+67            android:screenOrientation="portrait"
+67-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:44:13-49
+68            android:windowSoftInputMode="adjustResize" >
+68-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:45:13-55
+69            <intent-filter>
+69-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:46:13-49:29
+70                <action android:name="android.intent.action.MAIN" />
+70-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:47:17-69
+70-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:47:25-66
+71
+72                <category android:name="android.intent.category.LAUNCHER" />
+72-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:48:17-77
+72-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:48:27-74
+73            </intent-filter>
+74        </activity>
+75
+76        <!-- Result Screen Activity -->
+77        <activity
+77-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:53:9-57:58
+78            android:name="com.example.emergencytriage.ui.screens.ResultScreen"
+78-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:54:13-52
+79            android:exported="false"
+79-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:55:13-37
+80            android:parentActivityName="com.example.emergencytriage.MainActivity"
+80-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:57:13-55
+81            android:screenOrientation="portrait" />
+81-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:56:13-49
+82
+83        <!-- Telehealth Screen Activity -->
+84        <activity
+84-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:60:9-64:69
+85            android:name="com.example.emergencytriage.ui.screens.TelehealthScreen"
+85-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:61:13-56
+86            android:exported="false"
+86-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:62:13-37
+87            android:parentActivityName="com.example.emergencytriage.ui.screens.ResultScreen"
+87-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:64:13-66
+88            android:screenOrientation="portrait" />
+88-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:63:13-49
+89
+90        <!-- File Provider for camera capture -->
+91        <provider
+92            android:name="androidx.core.content.FileProvider"
+92-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:68:13-62
+93            android:authorities="com.example.emergencytriage.fileprovider"
+93-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:69:13-64
+94            android:exported="false"
+94-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:70:13-37
+95            android:grantUriPermissions="true" >
+95-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:71:13-47
+96            <meta-data
+96-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:72:13-74:54
+97                android:name="android.support.FILE_PROVIDER_PATHS"
+97-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:73:17-67
+98                android:resource="@xml/file_paths" />
+98-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:74:17-51
+99        </provider>
+100        <provider
+100-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Pranav\.gradle\caches\transforms-3\fb5ab30ee769a68d046d2bdff9b494dd\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+101            android:name="androidx.startup.InitializationProvider"
+101-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Pranav\.gradle\caches\transforms-3\fb5ab30ee769a68d046d2bdff9b494dd\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+102            android:authorities="com.example.emergencytriage.androidx-startup"
+102-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Pranav\.gradle\caches\transforms-3\fb5ab30ee769a68d046d2bdff9b494dd\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+103            android:exported="false" >
+103-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Pranav\.gradle\caches\transforms-3\fb5ab30ee769a68d046d2bdff9b494dd\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+104            <meta-data
+104-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Pranav\.gradle\caches\transforms-3\fb5ab30ee769a68d046d2bdff9b494dd\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+105                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+105-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Pranav\.gradle\caches\transforms-3\fb5ab30ee769a68d046d2bdff9b494dd\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+106                android:value="androidx.startup" />
+106-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Pranav\.gradle\caches\transforms-3\fb5ab30ee769a68d046d2bdff9b494dd\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+107            <meta-data
+107-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:34:13-36:52
+108                android:name="androidx.work.WorkManagerInitializer"
+108-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:35:17-68
+109                android:value="androidx.startup" />
+109-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:36:17-49
+110            <meta-data
+110-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Pranav\.gradle\caches\transforms-3\7e60a6254814e0be8922d2e6d74475a5\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+111                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+111-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Pranav\.gradle\caches\transforms-3\7e60a6254814e0be8922d2e6d74475a5\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+112                android:value="androidx.startup" />
+112-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Pranav\.gradle\caches\transforms-3\7e60a6254814e0be8922d2e6d74475a5\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+113            <meta-data
+113-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+114                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+114-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+115                android:value="androidx.startup" />
+115-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+116        </provider>
+117
+118        <service
+118-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:39:9-45:35
+119            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+119-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:40:13-88
+120            android:directBootAware="false"
+120-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:41:13-44
+121            android:enabled="@bool/enable_system_alarm_service_default"
+121-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:42:13-72
+122            android:exported="false" />
+122-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:43:13-37
+123        <service
+123-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:46:9-52:35
+124            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+124-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:47:13-84
+125            android:directBootAware="false"
+125-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:48:13-44
+126            android:enabled="@bool/enable_system_job_service_default"
+126-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:49:13-70
+127            android:exported="true"
+127-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:50:13-36
+128            android:permission="android.permission.BIND_JOB_SERVICE" />
+128-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:51:13-69
+129        <service
+129-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:53:9-59:35
+130            android:name="androidx.work.impl.foreground.SystemForegroundService"
+130-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:54:13-81
+131            android:directBootAware="false"
+131-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:55:13-44
+132            android:enabled="@bool/enable_system_foreground_service_default"
+132-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:56:13-77
+133            android:exported="false" />
+133-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:57:13-37
+134
+135        <receiver
+135-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:61:9-66:35
+136            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+136-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:62:13-88
+137            android:directBootAware="false"
+137-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:63:13-44
+138            android:enabled="true"
+138-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:64:13-35
+139            android:exported="false" />
+139-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:65:13-37
+140        <receiver
+140-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:67:9-77:20
+141            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+141-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:68:13-106
+142            android:directBootAware="false"
+142-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:69:13-44
+143            android:enabled="false"
+143-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:70:13-36
+144            android:exported="false" >
+144-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:71:13-37
+145            <intent-filter>
+145-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:73:13-76:29
+146                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+146-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:74:17-87
+146-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:74:25-84
+147                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+147-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:75:17-90
+147-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:75:25-87
+148            </intent-filter>
+149        </receiver>
+150        <receiver
+150-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:78:9-88:20
+151            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+151-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:79:13-104
+152            android:directBootAware="false"
+152-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:80:13-44
+153            android:enabled="false"
+153-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:81:13-36
+154            android:exported="false" >
+154-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:82:13-37
+155            <intent-filter>
+155-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:84:13-87:29
+156                <action android:name="android.intent.action.BATTERY_OKAY" />
+156-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:85:17-77
+156-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:85:25-74
+157                <action android:name="android.intent.action.BATTERY_LOW" />
+157-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:86:17-76
+157-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:86:25-73
+158            </intent-filter>
+159        </receiver>
+160        <receiver
+160-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:89:9-99:20
+161            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+161-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:90:13-104
+162            android:directBootAware="false"
+162-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:91:13-44
+163            android:enabled="false"
+163-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:92:13-36
+164            android:exported="false" >
+164-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:93:13-37
+165            <intent-filter>
+165-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:95:13-98:29
+166                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+166-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:96:17-83
+166-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:96:25-80
+167                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+167-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:97:17-82
+167-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:97:25-79
+168            </intent-filter>
+169        </receiver>
+170        <receiver
+170-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:100:9-109:20
+171            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+171-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:101:13-103
+172            android:directBootAware="false"
+172-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:102:13-44
+173            android:enabled="false"
+173-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:103:13-36
+174            android:exported="false" >
+174-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:104:13-37
+175            <intent-filter>
+175-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:106:13-108:29
+176                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+176-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:107:17-79
+176-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:107:25-76
+177            </intent-filter>
+178        </receiver>
+179        <receiver
+179-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:110:9-121:20
+180            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+180-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:111:13-88
+181            android:directBootAware="false"
+181-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:112:13-44
+182            android:enabled="false"
+182-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:113:13-36
+183            android:exported="false" >
+183-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:114:13-37
+184            <intent-filter>
+184-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:116:13-120:29
+185                <action android:name="android.intent.action.BOOT_COMPLETED" />
+185-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:117:17-79
+185-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:117:25-76
+186                <action android:name="android.intent.action.TIME_SET" />
+186-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:17-73
+186-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:25-70
+187                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+187-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:119:17-81
+187-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:119:25-78
+188            </intent-filter>
+189        </receiver>
+190        <receiver
+190-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:122:9-131:20
+191            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+191-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:123:13-99
+192            android:directBootAware="false"
+192-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:124:13-44
+193            android:enabled="@bool/enable_system_alarm_service_default"
+193-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:125:13-72
+194            android:exported="false" >
+194-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:126:13-37
+195            <intent-filter>
+195-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:128:13-130:29
+196                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+196-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:129:17-98
+196-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:129:25-95
+197            </intent-filter>
+198        </receiver>
+199        <receiver
+199-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:132:9-142:20
+200            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+200-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:133:13-78
+201            android:directBootAware="false"
+201-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:134:13-44
+202            android:enabled="true"
+202-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:135:13-35
+203            android:exported="true"
+203-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:136:13-36
+204            android:permission="android.permission.DUMP" >
+204-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:137:13-57
+205            <intent-filter>
+205-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:139:13-141:29
+206                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+206-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:140:17-88
+206-->[androidx.work:work-runtime:2.9.0] C:\Users\Pranav\.gradle\caches\transforms-3\5dff56c17e9b7be5091f8b0df36cfb08\transformed\work-runtime-2.9.0\AndroidManifest.xml:140:25-85
+207            </intent-filter>
+208        </receiver>
+209
+210        <uses-library
+210-->[androidx.window:window:1.0.0] C:\Users\Pranav\.gradle\caches\transforms-3\539ef9fbd961106d109897e69caf0001\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+211            android:name="androidx.window.extensions"
+211-->[androidx.window:window:1.0.0] C:\Users\Pranav\.gradle\caches\transforms-3\539ef9fbd961106d109897e69caf0001\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+212            android:required="false" />
+212-->[androidx.window:window:1.0.0] C:\Users\Pranav\.gradle\caches\transforms-3\539ef9fbd961106d109897e69caf0001\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+213        <uses-library
+213-->[androidx.window:window:1.0.0] C:\Users\Pranav\.gradle\caches\transforms-3\539ef9fbd961106d109897e69caf0001\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+214            android:name="androidx.window.sidecar"
+214-->[androidx.window:window:1.0.0] C:\Users\Pranav\.gradle\caches\transforms-3\539ef9fbd961106d109897e69caf0001\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+215            android:required="false" />
+215-->[androidx.window:window:1.0.0] C:\Users\Pranav\.gradle\caches\transforms-3\539ef9fbd961106d109897e69caf0001\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+216
+217        <service
+217-->[androidx.room:room-runtime:2.6.1] C:\Users\Pranav\.gradle\caches\transforms-3\9c6451e5a397340aedc603fd707dfce7\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+218            android:name="androidx.room.MultiInstanceInvalidationService"
+218-->[androidx.room:room-runtime:2.6.1] C:\Users\Pranav\.gradle\caches\transforms-3\9c6451e5a397340aedc603fd707dfce7\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+219            android:directBootAware="true"
+219-->[androidx.room:room-runtime:2.6.1] C:\Users\Pranav\.gradle\caches\transforms-3\9c6451e5a397340aedc603fd707dfce7\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+220            android:exported="false" />
+220-->[androidx.room:room-runtime:2.6.1] C:\Users\Pranav\.gradle\caches\transforms-3\9c6451e5a397340aedc603fd707dfce7\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+221
+222        <receiver
+222-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+223            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+223-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+224            android:directBootAware="false"
+224-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+225            android:enabled="true"
+225-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+226            android:exported="true"
+226-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+227            android:permission="android.permission.DUMP" >
+227-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+228            <intent-filter>
+228-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+229                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+229-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+229-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+230            </intent-filter>
+231            <intent-filter>
+231-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+232                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+232-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+232-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+233            </intent-filter>
+234            <intent-filter>
+234-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+235                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+235-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+235-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+236            </intent-filter>
+237            <intent-filter>
+237-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+238                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+238-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+238-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Pranav\.gradle\caches\transforms-3\2921a7ae2bfe331dac6d6f5002dc718e\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+239            </intent-filter>
+240        </receiver>
+241
+242        <provider
+242-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:32:9-40:20
+243            android:name="leakcanary.internal.LeakCanaryFileProvider"
+243-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:33:13-70
+244            android:authorities="com.squareup.leakcanary.fileprovider.com.example.emergencytriage"
+244-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:34:13-88
+245            android:exported="false"
+245-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:35:13-37
+246            android:grantUriPermissions="true" >
+246-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:36:13-47
+247            <meta-data
+247-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:72:13-74:54
+248                android:name="android.support.FILE_PROVIDER_PATHS"
+248-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:73:17-67
+249                android:resource="@xml/leak_canary_file_paths" />
+249-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:74:17-51
+250        </provider>
+251
+252        <activity
+252-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:42:9-73:20
+253            android:name="leakcanary.internal.activity.LeakActivity"
+253-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:43:13-69
+254            android:exported="true"
+254-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:44:13-36
+255            android:icon="@mipmap/leak_canary_icon"
+255-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:45:13-52
+256            android:label="@string/leak_canary_display_activity_label"
+256-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:46:13-71
+257            android:taskAffinity="com.squareup.leakcanary.com.example.emergencytriage"
+257-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:47:13-76
+258            android:theme="@style/leak_canary_LeakCanary.Base" >
+258-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:48:13-63
+259            <intent-filter android:label="@string/leak_canary_import_hprof_file" >
+259-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:49:13-72:29
+259-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:49:28-81
+260                <action android:name="android.intent.action.VIEW" />
+260-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:50:17-69
+260-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:50:25-66
+261
+262                <category android:name="android.intent.category.DEFAULT" />
+262-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:52:17-76
+262-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:52:27-73
+263                <category android:name="android.intent.category.BROWSABLE" />
+263-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:53:17-78
+263-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:53:27-75
+264
+265                <data android:scheme="file" />
+265-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:17-47
+265-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:23-44
+266                <data android:scheme="content" />
+266-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:17-47
+266-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:23-44
+267                <data android:mimeType="*/*" />
+267-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:17-47
+268                <data android:host="*" />
+268-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:17-47
+269                <data android:pathPattern=".*\\.hprof" />
+269-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:17-47
+270                <data android:pathPattern=".*\\..*\\.hprof" />
+270-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:17-47
+271                <data android:pathPattern=".*\\..*\\..*\\.hprof" />
+271-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:17-47
+272                <data android:pathPattern=".*\\..*\\..*\\..*\\.hprof" />
+272-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:17-47
+273                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.hprof" />
+273-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:17-47
+274                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.hprof" />
+274-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:17-47
+275                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.hprof" />
+275-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:55:17-47
+276                <!--
+277            Since hprof isn't a standard MIME type, we have to declare such patterns.
+278            Most file providers will generate URIs including their own package name,
+279            which contains `.` characters that must be explicitly escaped in pathPattern.
+280            @see https://stackoverflow.com/a/31028507/703646
+281                -->
+282            </intent-filter>
+283        </activity>
+284
+285        <activity-alias
+285-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:75:9-92:26
+286            android:name="leakcanary.internal.activity.LeakLauncherActivity"
+286-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:76:13-77
+287            android:banner="@drawable/leak_canary_tv_icon"
+287-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:77:13-59
+288            android:enabled="@bool/leak_canary_add_launcher_icon"
+288-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:78:13-66
+289            android:exported="true"
+289-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:79:13-36
+290            android:icon="@mipmap/leak_canary_icon"
+290-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:80:13-52
+291            android:label="@string/leak_canary_display_activity_label"
+291-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:81:13-71
+292            android:targetActivity="leakcanary.internal.activity.LeakActivity"
+292-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:82:13-79
+293            android:taskAffinity="com.squareup.leakcanary.com.example.emergencytriage"
+293-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:83:13-76
+294            android:theme="@style/leak_canary_LeakCanary.Base" >
+294-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:84:13-63
+295            <intent-filter>
+295-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:85:13-91:29
+296                <action android:name="android.intent.action.MAIN" />
+296-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:47:17-69
+296-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:47:25-66
+297
+298                <category android:name="android.intent.category.LAUNCHER" />
+298-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:48:17-77
+298-->C:\Users\Pranav\OneDrive\Desktop\EmergencyTriageApp\app\src\main\AndroidManifest.xml:48:27-74
+299                <!-- Android TV launcher intent -->
+300                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+300-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:90:17-86
+300-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:90:27-83
+301            </intent-filter>
+302        </activity-alias>
+303
+304        <activity
+304-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:94:9-100:68
+305            android:name="leakcanary.internal.RequestPermissionActivity"
+305-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:95:13-73
+306            android:excludeFromRecents="true"
+306-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:96:13-46
+307            android:icon="@mipmap/leak_canary_icon"
+307-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:97:13-52
+308            android:label="@string/leak_canary_storage_permission_activity_label"
+308-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:98:13-82
+309            android:taskAffinity="com.squareup.leakcanary.com.example.emergencytriage"
+309-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:99:13-76
+310            android:theme="@style/leak_canary_Theme.Transparent" />
+310-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:100:13-65
+311
+312        <receiver android:name="leakcanary.internal.NotificationReceiver" />
+312-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:102:9-77
+312-->[com.squareup.leakcanary:leakcanary-android-core:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\5bc1a5e89d464afea037ebc776985b12\transformed\leakcanary-android-core-2.12\AndroidManifest.xml:102:19-74
+313
+314        <provider
+314-->[com.squareup.leakcanary:leakcanary-object-watcher-android:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\778ae09e3581657c3289ce333a1b4ca4\transformed\leakcanary-object-watcher-android-2.12\AndroidManifest.xml:8:9-12:40
+315            android:name="leakcanary.internal.MainProcessAppWatcherInstaller"
+315-->[com.squareup.leakcanary:leakcanary-object-watcher-android:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\778ae09e3581657c3289ce333a1b4ca4\transformed\leakcanary-object-watcher-android-2.12\AndroidManifest.xml:9:13-78
+316            android:authorities="com.example.emergencytriage.leakcanary-installer"
+316-->[com.squareup.leakcanary:leakcanary-object-watcher-android:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\778ae09e3581657c3289ce333a1b4ca4\transformed\leakcanary-object-watcher-android-2.12\AndroidManifest.xml:10:13-72
+317            android:enabled="@bool/leak_canary_watcher_auto_install"
+317-->[com.squareup.leakcanary:leakcanary-object-watcher-android:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\778ae09e3581657c3289ce333a1b4ca4\transformed\leakcanary-object-watcher-android-2.12\AndroidManifest.xml:11:13-69
+318            android:exported="false" />
+318-->[com.squareup.leakcanary:leakcanary-object-watcher-android:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\778ae09e3581657c3289ce333a1b4ca4\transformed\leakcanary-object-watcher-android-2.12\AndroidManifest.xml:12:13-37
+319        <provider
+319-->[com.squareup.leakcanary:plumber-android:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\564ad1b60bc8f8d3bc763f07d663d17e\transformed\plumber-android-2.12\AndroidManifest.xml:8:9-12:40
+320            android:name="leakcanary.internal.PlumberInstaller"
+320-->[com.squareup.leakcanary:plumber-android:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\564ad1b60bc8f8d3bc763f07d663d17e\transformed\plumber-android-2.12\AndroidManifest.xml:9:13-64
+321            android:authorities="com.example.emergencytriage.plumber-installer"
+321-->[com.squareup.leakcanary:plumber-android:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\564ad1b60bc8f8d3bc763f07d663d17e\transformed\plumber-android-2.12\AndroidManifest.xml:10:13-69
+322            android:enabled="@bool/leak_canary_plumber_auto_install"
+322-->[com.squareup.leakcanary:plumber-android:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\564ad1b60bc8f8d3bc763f07d663d17e\transformed\plumber-android-2.12\AndroidManifest.xml:11:13-69
+323            android:exported="false" />
+323-->[com.squareup.leakcanary:plumber-android:2.12] C:\Users\Pranav\.gradle\caches\transforms-3\564ad1b60bc8f8d3bc763f07d663d17e\transformed\plumber-android-2.12\AndroidManifest.xml:12:13-37
+324    </application>
+325
+326</manifest>

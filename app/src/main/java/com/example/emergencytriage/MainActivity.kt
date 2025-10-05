@@ -24,6 +24,7 @@ import com.example.emergencytriage.data.models.UrgencyLevel
 import com.example.emergencytriage.ui.screens.ResultScreen
 import com.example.emergencytriage.ui.viewmodels.MainViewModel
 import com.example.emergencytriage.utils.PermissionsHelper
+import com.example.emergencytriage.data.repository.TriageRepository
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.imageview.ShapeableImageView
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnAnalyze: MaterialButton
     private lateinit var imgPreview: ShapeableImageView
     private lateinit var tvTranscribedText: TextInputEditText
+    private lateinit var tvStatus: android.widget.TextView
     private lateinit var fabEmergency: ExtendedFloatingActionButton
     private lateinit var emptyImageOverlay: View
 
@@ -77,6 +79,19 @@ class MainActivity : AppCompatActivity() {
         setupObservers()
         setupListeners()
         requestPermissions()
+
+        // Show environment status at startup if models are missing
+        val repo = TriageRepository(applicationContext)
+        val imageOk = repo.isImageModelAvailable()
+        val textOk = repo.isTextModelAvailable()
+        if (!(imageOk && textOk)) {
+            Snackbar.make(
+                findViewById(android.R.id.content),
+                "ML models not found. Using safe fallback.",
+                Snackbar.LENGTH_LONG
+            ).show()
+            tvStatus.text = "Models missing (fallback active)."
+        }
     }
 
     private fun initializeViews() {
@@ -87,6 +102,7 @@ class MainActivity : AppCompatActivity() {
         btnAnalyze = findViewById(R.id.btn_analyze)
         imgPreview = findViewById(R.id.img_preview)
         tvTranscribedText = findViewById(R.id.tv_transcribed_text)
+        tvStatus = findViewById(R.id.tv_status)
         fabEmergency = findViewById(R.id.fab_emergency)
         emptyImageOverlay = findViewById(R.id.empty_image_overlay)
 
@@ -110,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
         // Observe status messages
         viewModel.statusMessage.observe(this) { message ->
-            // Status is now displayed in the status card in the layout
+            tvStatus.text = message
         }
 
         // Observe recording state
@@ -240,13 +256,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             speechRecognizer?.startListening(intent)
-            isRecording = true
             btnStartRecording.isEnabled = false
             btnStopRecording.isEnabled = true
-            updateStatus("Listening... Describe your symptoms")
+            updateStatusUi("Listening... Describe your symptoms")
         } catch (e: Exception) {
             Log.e(TAG, "Error starting speech recognition", e)
-            updateStatus("Error starting voice recording")
+            updateStatusUi("Error starting voice recording")
         }
     }
 
@@ -397,8 +412,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        speechRecognizer?.destroy()
+    private fun updateStatusUi(message: String) {
+        tvStatus.text = message
     }
 }

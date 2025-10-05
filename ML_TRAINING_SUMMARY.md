@@ -1,3 +1,53 @@
+# ML Training Summary
+
+This document explains how to collect datasets, train two models (images and symptoms), convert to TensorFlow Lite, and place files so the Android app can use them. The app also runs without models using safe fallbacks.
+
+## Datasets
+
+- Image: Skin/rash dataset organized as `datasets/SkinDisease/train/<ClassName>/*.jpg` (and optional `test/`). You can start from HAM10000 or HMNIST variants and expand classes you need. Ensure de-identified images and balanced classes.
+- Symptoms: `datasets/DiseaseAndSymptoms.csv` with columns Symptom_1..Symptom_n and optional `Severity`. If Severity is missing, the script infers labels from keywords.
+
+## Train models (Windows PowerShell)
+
+```powershell
+python -m venv .venv ; .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+# 1) Image model (basic)
+python .\ml\train_images_basic.py
+python .\ml\convert_image_to_tflite.py
+
+# 2) Symptoms model (basic)
+python .\ml\train_symptoms_basic.py
+python .\ml\convert_text_to_tflite.py
+```
+
+Outputs will appear in `app/src/main/assets/models/`:
+- rash_model.tflite, rash_model_labels.txt
+- text_classifier.tflite, text_classifier_labels.txt, vocab.txt
+
+Optional: `DiseasePrecaution.csv` can be put in the same folder to enhance recommendations; defaults exist in code.
+
+## Voice/NLP requirements
+
+- Android uses built-in Speech Recognizer. Ensure Google Speech Services is enabled on device.
+- If you choose Transformers (DistilBERT) in advanced scripts, expect larger size and conversion complexity. Start with the basic Keras model first.
+
+## App behavior without models
+
+- Text: rule-based severity using medical keywords
+- Image: placeholder “Unknown Skin Condition”
+- Fusion: conservative urgency and default precautions
+
+You can fully test UI and flows even without ML files.
+
+## Suggested improvements
+
+- Quantize TFLite models (FP16/Int8) for speed/size.
+- Keep label order consistent between training and app.
+- Add on-device encryption for any caches.
+- For OEM embedding (Samsung), use NNAPI delegates and system permission flows; consider modular updates for model packs.
+
 # 🎉 Emergency Triage App - ML Model Training Complete!
 
 ## 📋 Training Summary

@@ -16,8 +16,8 @@ class ImageClassifier(private val context: Context) {
     
     companion object {
         private const val TAG = "ImageClassifier"
-        private const val MODEL_FILE = "rash_model.tflite"
-        private const val LABELS_FILE = "rash_model_labels.txt"
+        private const val MODEL_FILE = "models/rash_model.tflite"
+        private const val LABELS_FILE = "models/rash_model_labels.txt"
         private const val INPUT_SIZE = 224
         private const val PIXEL_SIZE = 3
         private const val IMAGE_MEAN = 127.5f

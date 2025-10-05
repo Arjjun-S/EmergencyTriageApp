@@ -134,7 +134,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         _isRecording.value = false
         _showImagePreviewAnimation.value = false
         _showRecordingAnimation.value = false
-        _statusMessage.value = "Ready - Select image and record symptoms"
+        _statusMessage.value = initialStatus()
         updateAnalysisAvailability()
     }
 
@@ -165,7 +165,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             hasImage && hasText -> _statusMessage.value = "Ready for analysis"
             hasImage -> _statusMessage.value = "Image selected - Add symptoms or analyze"
             hasText -> _statusMessage.value = "Symptoms recorded - Add image or analyze"
-            else -> _statusMessage.value = "Select image and record symptoms"
+            else -> _statusMessage.value = initialStatus()
+        }
+    }
+
+    private fun initialStatus(): String {
+        val imageOk = repository.isImageModelAvailable()
+        val textOk = repository.isTextModelAvailable()
+        return if (imageOk && textOk) {
+            "Ready - Select image and record symptoms"
+        } else {
+            "Models missing (using fallback). You can still test the flow."
         }
     }
 

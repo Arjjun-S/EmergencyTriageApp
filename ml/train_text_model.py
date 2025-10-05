@@ -20,7 +20,7 @@ import string
 # Configuration
 CONFIG = {
     'dataset_path': '../datasets/DiseaseAndSymptoms.csv',
-    'model_output_path': '../app/src/main/assets/',
+    'model_output_path': '../app/src/main/assets/models/',
     'max_sequence_length': 128,
     'batch_size': 32,
     'epochs': 50,

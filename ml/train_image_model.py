@@ -16,7 +16,7 @@ import seaborn as sns
 # Configuration
 CONFIG = {
     'dataset_path': '../datasets/SkinDisease',
-    'model_output_path': '../app/src/main/assets/',
+    'model_output_path': '../app/src/main/assets/models/',
     'image_size': (224, 224),
     'batch_size': 32,
     'epochs': 100,

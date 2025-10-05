@@ -1,3 +1,151 @@
+# Smart Medical Triage: Multimodal AI (Android)
+
+Talk. Show. Get help — in minutes.
+
+- Combines voice, image, and text for real-time triage
+- Runs on smartphones with lightweight AI models (TensorFlow Lite)
+- Privacy-first: designed for HIPAA/GDPR-style compliance
+
+Team Blue Orchids — SRM Institute of Science and Technology (KTR)
+
+Theme: Multimodal AI | Members: Arjjun S, Bala Tharun R, B B Hemanth, S M Sudharshan, H A Pranav Jai
+
+## What’s in this repo
+
+- Android app (Kotlin, MVVM) under `app/`
+- ML training scripts under `ml/` for:
+   - Image model: skin/rash classifier (`train_image_model.py`)
+
+   - Text model: symptom severity classifier (`train_text_model.py`)
+- Conversion scripts to TensorFlow Lite: `convert_image_to_tflite.py`, `convert_text_to_tflite.py`
+- Sample datasets CSVs under `datasets/`
+
+The app runs even without ML assets. If models are missing, it uses safe rule-based fallbacks and shows a “models missing” status in the UI.
+
+## Quick start (Android)
+
+1) Open the project in Android Studio (Giraffe+).
+2) Build and run on a device (Android 8+). No internet required for basic flows.
+3) You can record symptoms or type text, and optionally select or capture an image.
+
+Fallback mode without ML:
+- Image: returns “Unknown Skin Condition” with low confidence.
+- Text: rule-based severity scoring using medical keywords.
+
+- Fusion: combines both to produce an urgency level and precautions.
+
+You’ll see a status banner in the home screen if models are missing.
+
+## Where to place ML assets
+
+Place these files under `app/src/main/assets/models/`:
+
+- Image model: `rash_model.tflite` and `rash_model_labels.txt`
+- Text model: `text_classifier.tflite`, `text_classifier_labels.txt`, `vocab.txt`
+- Optional data: `DiseasePrecaution.csv` (precaution lookups; a default is bundled in code if missing)
+
+Folder structure:
+
+app/src/main/assets/models/
+   rash_model.tflite
+   rash_model_labels.txt
+
+   text_classifier.tflite
+   text_classifier_labels.txt
+   vocab.txt
+   DiseasePrecaution.csv
+
+If any of the above are missing, the app still runs using fallbacks.
+
+## Datasets: how to collect and prepare
+
+1) Image dataset (skin/rash):
+- Recommended structure for Keras generators:
+   datasets/SkinDisease/
+      train/
+         Acne/ ...jpg
+         Eczema/ ...jpg
+         ...
+      test/ (optional)
+
+- Use public datasets such as HAM10000 (license-compliant) and augment with additional classes. Ensure balanced classes and anonymized images.
+
+2) Symptoms dataset (text):
+- Use `datasets/DiseaseAndSymptoms.csv` and/or synthesize sentences from symptom lists.
+- Columns like Symptom_1..Symptom_n; optionally include a Severity column. If Severity is missing, the training script generates labels from keywords.
+
+Privacy note: Never include personal identifiers; scrub EXIF from images.
+
+## Train the models (two Python scripts)
+
+Prereqs on Windows (PowerShell):
+
+```powershell
+python -m venv .venv ; .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+1) Train image model
+
+Edit paths at the top of `ml/train_image_model.py` if needed. Default expects images under `datasets/SkinDisease/`.
+
+```powershell
+python .\ml\train_image_model.py
+python .\ml\convert_image_to_tflite.py
+```
+
+Outputs expected under `app/src/main/assets/models/` as `rash_model.tflite` and `rash_model_labels.txt` (the Keras `.h5` is saved too).
+
+2) Train text model
+
+Default input is `datasets/DiseaseAndSymptoms.csv`. You can change `model_type` to `simple_nn` or `lstm` for easier conversion to TFLite.
+
+```powershell
+python .\ml\train_text_model.py
+python .\ml\convert_text_to_tflite.py
+```
+
+Outputs: `text_classifier.tflite`, `text_classifier_labels.txt`, and `vocab.txt` in `app/src/main/assets/models/`.
+
+Voice/NLP resources to download:
+- Android device speech recognizer (built-in Google Speech Service; ensure it’s enabled).
+- Python: Transformers/TF if you pick DistilBERT; otherwise Keras-only models are lighter and easier to convert.
+
+## Running the app in “static” mode
+
+If models are missing (fresh clone), the app shows a status note and uses:
+- Rule-based text severity
+- Default image placeholder classification
+- Hardcoded precaution defaults
+
+You can still test the complete UI and telehealth flow.
+
+## Better ways and suggested changes
+
+- Prefer lightweight text models (simple NN/LSTM) over DistilBERT for TFLite. DistilBERT to TFLite is possible but heavier and requires careful conversion; start simple and iterate.
+- Quantize image model to float16 or int8 for Samsung devices to improve speed and size.
+- Maintain a single source of truth for class labels and ensure label order consistency between training and mobile.
+- Add on-device caching of predictions and offline-first behavior for telehealth handoffs.
+- For OEM integration (e.g., Samsung), consider a system app/service module with:
+   - background microphone permission flows vetted by OEM
+   - neural acceleration via NNAPI/GPU delegates
+   - modular “emergency pack” updates via Play System Updates or OEM store
+
+## Troubleshooting
+
+- App runs but “models missing”: check `app/src/main/assets/models/` and filenames.
+- TFLite conversion mismatches: ensure input shapes match (224x224x3 for images; max seq len for text). Check normalization steps.
+- Large APK: use aab splits and keep models quantized.
+
+## Security and privacy
+
+- No PHI is logged. Avoid sending data to servers by default.
+- Add Data Safety section before publishing. Consider on-device encryption for cached data.
+
+## License and datasets
+
+Use only datasets you have rights to. Respect dataset licenses for any public sources.
+
 # Emergency Triage App# Emergency Triage App# 🏥 Emergency AI Triage App
 
 

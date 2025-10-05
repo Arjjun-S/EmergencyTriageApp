@@ -41,4 +41,7 @@
     <color name="warning">#F6AD55</color>
     <color name="error">#E53E3E</color>
     <color name="info">#3182CE</color>
+    
+    <!-- Launcher icon background -->
+    <color name="ic_launcher_background">#FFFFFF</color>
 </resources>

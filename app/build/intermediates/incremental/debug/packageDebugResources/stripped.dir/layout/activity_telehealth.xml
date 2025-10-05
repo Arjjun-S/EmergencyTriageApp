@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.screens.TelehealthScreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/telehealth_title"
+            style="@style/TitleText"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/telehealth_description"
+            style="@style/BodyText"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Services Info -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ResultCard"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tv_services"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Available Services..."
+                style="@style/BodyText"
+                android:padding="16dp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Telehealth Provider Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btn_connect_teladoc"
+                style="@style/PrimaryButton"
+                android:text="@string/connect_teladoc"
+                android:drawableTop="@drawable/ic_health" />
+
+            <Button
+                android:id="@+id/btn_connect_amwell"
+                style="@style/PrimaryButton"
+                android:text="@string/connect_amwell"
+                android:drawableTop="@drawable/ic_health" />
+
+            <Button
+                android:id="@+id/btn_connect_doctor_on_demand"
+                style="@style/PrimaryButton"
+                android:text="@string/connect_doctor_on_demand"
+                android:drawableTop="@drawable/ic_health" />
+
+            <Button
+                android:id="@+id/btn_connect_mdlive"
+                style="@style/PrimaryButton"
+                android:text="@string/connect_mdlive"
+                android:drawableTop="@drawable/ic_health" />
+
+        </LinearLayout>
+
+        <!-- Emergency Section -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ResultCard"
+            app:cardBackgroundColor="@color/urgency_red_light"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Emergency"
+                    style="@style/SubtitleText"
+                    android:textColor="@color/urgency_red"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/btn_emergency_call"
+                    style="@style/EmergencyButton"
+                    android:text="@string/emergency_call"
+                    android:drawableTop="@drawable/ic_emergency" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Navigation Button -->
+        <Button
+            android:id="@+id/btn_back_to_results"
+            style="@style/SecondaryButton"
+            android:text="@string/back_to_results"
+            android:drawableTop="@drawable/ic_arrow_back"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Medical Disclaimer -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/medical_disclaimer"
+            android:textSize="12sp"
+            android:textColor="@color/text_muted"
+            android:textAlignment="center"
+            android:padding="8dp"
+            android:background="@color/gray_100" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -10,7 +10,7 @@ class FusionEngine(private val context: Context) {
     
     companion object {
         private const val TAG = "FusionEngine"
-        private const val DISEASE_PRECAUTIONS_FILE = "DiseasePrecaution.csv"
+        private const val DISEASE_PRECAUTIONS_FILE = "models/DiseasePrecaution.csv"
     }
 
     // Disease severity mapping - maps diseases to their typical severity levels
@@ -48,12 +48,14 @@ class FusionEngine(private val context: Context) {
 
     private fun loadPrecautionsData() {
         try {
-            val inputStream = context.assets.open("DiseasePrecaution.csv")
+            val inputStream = context.assets.open(DISEASE_PRECAUTIONS_FILE)
             val reader = BufferedReader(InputStreamReader(inputStream))
             val precautions = mutableMapOf<String, List<String>>()
-            
-            var line = reader.readLine() // Skip header
-            while (reader.readLine()?.also { line = it } != null) {
+
+            // Read and skip header if present
+            var line: String? = reader.readLine()
+            while (true) {
+                line = reader.readLine() ?: break
                 val columns = line.split(",").map { it.trim() }
                 if (columns.size >= 5) {
                     val disease = columns[0]

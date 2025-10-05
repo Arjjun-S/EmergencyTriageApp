@@ -10,8 +10,8 @@ from tensorflow.keras.models import load_model
 
 # Configuration
 CONFIG = {
-    'model_path': '../app/src/main/assets/skin_cnn.h5',
-    'output_path': '../app/src/main/assets/rash_model.tflite',
+    'model_path': '../app/src/main/assets/models/skin_cnn.h5',
+    'output_path': '../app/src/main/assets/models/rash_model.tflite',
     'quantization': True,  # Enable quantization for smaller model size
     'representative_dataset': None,  # Path to representative dataset for quantization
     'optimization_level': 'DEFAULT'  # 'DEFAULT', 'OPTIMIZE_FOR_SIZE', 'OPTIMIZE_FOR_LATENCY'

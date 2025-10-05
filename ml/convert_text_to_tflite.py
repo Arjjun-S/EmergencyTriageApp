@@ -10,8 +10,8 @@ from tensorflow.keras.models import load_model
 
 # Configuration
 CONFIG = {
-    'model_path': '../app/src/main/assets/text_classifier.h5',
-    'output_path': '../app/src/main/assets/text_classifier.tflite',
+    'model_path': '../app/src/main/assets/models/text_classifier.h5',
+    'output_path': '../app/src/main/assets/models/text_classifier.tflite',
     'quantization': True,
     'max_sequence_length': 128,
     'vocab_size': 10000
