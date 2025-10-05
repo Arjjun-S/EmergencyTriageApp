@@ -33,8 +33,7 @@ Members: Arjjun S, B B Hemanth, H A Pranav Jai, S M Sudharshan, Bala Tharun R
 ## 1) Submissions
 
 - Video demo: https://youtu.be/PLACEHOLDER_VIDEO
-- Presentation: https://example.com/PLACEHOLDER_RESOURCES
-- Detailed documentation: https://example.com/PLACEHOLDER_RESOURCES
+- Detailed documentation: https://github.com/Arjjun-S/EmergencyTriageApp/blob/767614fcddc16df7869cb860f068a1fa86f7f719/BLUE%20ORCHIDS.pdf
 
 Replace the placeholders with your actual URLs. Keep this section even if assets are already uploaded to GitHub.
 
