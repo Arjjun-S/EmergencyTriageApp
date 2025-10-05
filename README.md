@@ -34,6 +34,9 @@ Members: Arjjun S, B B Hemanth, H A Pranav Jai, S M Sudharshan, Bala Tharun R
 
 Video demo:
 
+https://github.com/user-attachments/assets/9fec213d-3475-4a4a-a04e-689a87045274
+
+
 - Detailed documentation: https://github.com/Arjjun-S/EmergencyTriageApp/blob/767614fcddc16df7869cb860f068a1fa86f7f719/BLUE%20ORCHIDS.pdf
 
 Replace the placeholders with your actual URLs. Keep this section even if assets are already uploaded to GitHub.
